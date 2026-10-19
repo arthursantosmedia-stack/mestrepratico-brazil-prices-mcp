@@ -1,0 +1,7 @@
+# Smithery configuration for Mestre Prático MCP Server
+startCommand:
+  type: stdio
+  config:
+    command: node
+    args:
+      - ./index.js

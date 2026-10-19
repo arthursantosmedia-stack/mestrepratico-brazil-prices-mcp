@@ -1,0 +1,41 @@
+{
+  "name": "@nutripreco/mestre-pratico-mcp",
+  "version": "1.0.0",
+  "description": "Official Model Context Protocol (MCP) Server for Brazilian Public Data: Audited Fuel Prices (ANP), LPG Cooking Gas (ANP), Regulated Medicines PMC & Farmácia Popular (ANVISA/CMED), and Basic Food Basket indices.",
+  "main": "index.js",
+  "bin": {
+    "mestre-pratico-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cursor",
+    "chatgpt",
+    "brazil",
+    "anp",
+    "anvisa",
+    "cmed",
+    "fuel-prices",
+    "gas-glp",
+    "medicines",
+    "open-data",
+    "holding-arthur"
+  ],
+  "author": "Holding Arthur Luis Vieira dos Santos",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nutripreco-oficial/mestre-pratico-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nutripreco-oficial/mestre-pratico-mcp-server/issues"
+  },
+  "homepage": "https://mestrepratico.com.br/developers",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
