@@ -1,0 +1,10 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "maintainers": [
+    "arthursantosmedia-stack"
+  ],
+  "name": "Mestre Prático & NutriPreço — Brazil Retail & Fuel Price Intelligence",
+  "description": "Official sovereign Model Context Protocol (MCP) server providing real-time audited fuel prices (ANP), 13kg LPG cooking gas, regulated medicines (CMED/ANVISA), basic food basket indices (NFC-e SEFAZ), and regional cost-of-living comparison across all 27 Brazilian states and 417+ cities.",
+  "homepage": "https://mestrepratico.com.br/developers",
+  "remoteUrl": "https://mestrepratico.com.br/mcp/v1"
+}
