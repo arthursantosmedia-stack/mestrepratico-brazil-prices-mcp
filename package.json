@@ -1,41 +1,32 @@
 {
-  "name": "@nutripreco/mestre-pratico-mcp",
-  "version": "1.1.0",
-  "description": "Official Model Context Protocol (MCP) Server for Brazilian Public Data: Audited Fuel Prices (ANP), LPG Cooking Gas (ANP), Regulated Medicines PMC & Farmácia Popular (ANVISA/CMED), Basic Food Basket indices, and Regional Comparison Discovery.",
+  "name": "@mestrepratico/brazil-prices-mcp",
+  "version": "1.2.0",
+  "description": "Official Model Context Protocol (MCP) server for Brazil fuel prices (ANP), 13kg LPG cooking gas, regulated medicines (CMED/ANVISA), grocery basket intelligence (SEFAZ NFC-e), and regional comparisons across all 27 Brazilian states.",
   "main": "index.js",
   "bin": {
-    "mestre-pratico-mcp": "./index.js"
+    "mestrepratico-brazil-prices-mcp": "./index.js"
   },
   "scripts": {
     "start": "node index.js"
   },
+  "homepage": "https://mestrepratico.com.br/developers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arthursantosmedia-stack/mestrepratico-brazil-prices-mcp.git"
+  },
+  "author": "Holding Arthur Luis Vieira dos Santos",
+  "license": "MIT",
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "claude",
-    "cursor",
-    "chatgpt",
     "brazil",
     "anp",
     "anvisa",
     "cmed",
+    "sefaz",
     "fuel-prices",
-    "gas-glp",
-    "medicines",
-    "open-data",
-    "holding-arthur"
-  ],
-  "author": "Holding Arthur Luis Vieira dos Santos",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nutripreco-oficial/mestre-pratico-mcp-server.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nutripreco-oficial/mestre-pratico-mcp-server/issues"
-  },
-  "homepage": "https://mestrepratico.com.br/developers",
-  "engines": {
-    "node": ">=18.0.0"
-  }
+    "grocery",
+    "cost-of-living",
+    "glama"
+  ]
 }
