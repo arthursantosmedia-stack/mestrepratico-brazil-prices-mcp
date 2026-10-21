@@ -29,9 +29,9 @@ Built and maintained by **Holding Arthur Luis Vieira dos Santos — Tecnologia e
 
 ---
 
-## 🛠️ The 7 Standardized `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
+## 🛠️ The 9 Sovereign `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
 
-All 7 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):
+All 9 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):
 
 | Tool Name | Primary Authority | Public Spot Sample (`Free Tier`) | Enterprise Unlock (`Bearer <API_KEY>`) |
 | :--- | :--- | :--- | :--- |
@@ -41,6 +41,8 @@ All 7 tools enforce strict `brazil_*` naming consistency, JSON Schema input cons
 | **`brazil_lpg_gas_prices`** | ANP Open Data | Top 2 authorized 13kg LPG cooking gas resellers + state average/min/max | All 13,145+ resellers with neighborhood delivery spread + **Historical Series** |
 | **`brazil_pharma_medicines`** | CMED / ANVISA / SUS | Up to 3 matching presentations with Factory Price (PF), PMC, and Farmácia Popular | Full 26,635+ ANVISA catalog + **Multi-Lab Generic vs. Reference Comparison & History** |
 | **`brazil_list_states`** | Discovery Metadata | All 27 Brazilian UF codes, station coverage counts, ICMS tax rates, timestamps | Full municipality slug directory & real-time webhook sync metadata |
+| **`brazil_purchasing_power_oracle`** | DIEESE / BACEN / IBGE / ANEEL | Minimum wage labor-hours required to purchase monthly 13-item grocery basket, 13kg LPG, fuel & 150 kWh electricity | Real purchasing power parity (PPP) by state & **Historical Labor-Hours Trend** |
+| **`brazil_energy_tariffs`** | ANEEL / ANP | Homologated residential B1 electricity rates across all 27 UFs + Thermal cooking parity (GLP vs induction) | Distribution network cost-breakdown & **Seasonal Tariff Flags (Bandeiras Tarifárias)** |
 | **`brazil_compare_regions`** | Cross-State Synthesis | Side-by-side fuel & grocery differential + 70% ethanol/gasoline parity ratio | **Multi-Sector Cross-State Comparison (including Pharma ICMS 18% vs 20% & LPG)** |
 
 ---
@@ -57,6 +59,16 @@ All 7 tools enforce strict `brazil_*` naming consistency, JSON Schema input cons
 * **Corporate Licensing Desk:** `parcerias@mestrepratico.com.br` | `holding@mestrepratico.com.br`
 
 ---
+
+## ⚡ 1-Click Install via Smithery (Claude Desktop, Cursor, Cline)
+
+Install automatically with a single terminal command:
+
+```bash
+npx -y @smithery/cli install @mestrepratico/brazil-prices-mcp
+```
+
+Or connect directly via remote HTTP:
 
 ## ⚡ Quick Connect (Claude Desktop, Cursor, Windsurf, Glama)
 

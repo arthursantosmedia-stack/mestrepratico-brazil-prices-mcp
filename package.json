@@ -1,7 +1,7 @@
 {
   "name": "@mestrepratico/brazil-prices-mcp",
-  "version": "1.2.0",
-  "description": "Official Model Context Protocol (MCP) server for Brazil fuel prices (ANP), 13kg LPG cooking gas, regulated medicines (CMED/ANVISA), grocery basket intelligence (SEFAZ NFC-e), and regional comparisons across all 27 Brazilian states.",
+  "version": "1.3.0",
+  "description": "Official sovereign Model Context Protocol (MCP) server for Brazil fuel prices (ANP), 13kg LPG cooking gas, regulated medicines (CMED/ANVISA), grocery basket intelligence (SEFAZ NFC-e), ANEEL residential electricity tariffs, labor-hours purchasing power oracle, and regional comparisons across all 27 Brazilian states.",
   "main": "index.js",
   "bin": {
     "mestrepratico-brazil-prices-mcp": "./index.js"
@@ -27,6 +27,9 @@
     "fuel-prices",
     "grocery",
     "cost-of-living",
-    "glama"
+    "glama",
+    "aneel",
+    "purchasing-power",
+    "energy-tariffs"
   ]
 }

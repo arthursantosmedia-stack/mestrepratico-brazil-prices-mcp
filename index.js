@@ -86,6 +86,60 @@ const TOOLS = [
     }
   },
   {
+    "name": "brazil_purchasing_power_oracle",
+    "description": "Calculates real purchasing power parity (PPP) and labor-hour requirements across all 27 Brazilian states (UFs). Computes the exact working hours required to afford essential household survival goods: the 13 essential grocery items (SEFAZ NFC-e / DIEESE), residential 13kg cooking gas (ANP), fuel (50L gasoline tank), and electricity (150 kWh ANEEL). Correlates with Banco Central do Brasil (BCB SGS) interest and inflation rates, thermal parity (LPG vs. electric induction cooking), and CONFAZ tax anatomy. Read-only operation; zero authentication required.",
+    "annotations": {
+      "title": "Brazil Purchasing Power & Labor-Hours Oracle",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": true
+    },
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uf": {
+          "type": "string",
+          "description": "Two-letter Brazilian state acronym (e.g. 'RJ', 'SP', 'MG', 'BA', 'DF'). Defaults to 'RJ' if omitted."
+        },
+        "salario_mensal_brl": {
+          "type": "number",
+          "description": "Monthly income in BRL to calculate labor hours against standard 220h CLT workload. Defaults to federal minimum wage (1518.00 BRL) if omitted."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "brazil_energy_tariffs",
+    "description": "Provides official ANEEL (Agência Nacional de Energia Elétrica) residential electricity tariffs (B1) across all 27 Brazilian states (UFs), covering state concessionaires (e.g. Light, Enel, Cemig, Copel, Equatorial, Celesc). Computes estimated monthly electric bills for a given consumption baseline (default 150 kWh), and calculates thermal cooking parity: comparing the cost of residential cooking with an ANP 13kg LPG cylinder against 99 kWh of electric induction cooking. Read-only operation; zero authentication required.",
+    "annotations": {
+      "title": "Brazil Residential Electricity Tariffs & Thermal Parity (ANEEL)",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": true
+    },
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uf": {
+          "type": "string",
+          "description": "Two-letter Brazilian state acronym (e.g. 'RJ', 'SP', 'MG', 'BA', 'DF'). Defaults to 'RJ' if omitted."
+        },
+        "consumo_mensal_kwh": {
+          "type": "number",
+          "description": "Monthly electricity consumption in kWh for residential bill calculation. Defaults to standard baseline 150 kWh if omitted."
+        },
+        "incluir_paridade_termica_gas": {
+          "type": "boolean",
+          "description": "Whether to calculate thermal cooking parity comparing 13kg LPG cylinder vs 99 kWh induction cooking. Defaults to true."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
     "name": "brazil_cost_of_living",
     "description": "Computes a consolidated regional cost-of-living index and purchasing power parity (PPP) in Brazil, combining average fuel expenditure, basic food basket cost, and live USD/BRL exchange rate conversion. Updated daily. Read-only operation; no authentication required up to 60 req/min. Use brazil_fuel_prices or brazil_grocery_basket for granular item-level breakdowns, or brazil_compare_regions to compare two states side-by-side.",
     "annotations": {
@@ -249,7 +303,7 @@ rl.on('line', (line) => {
         result: {
           protocolVersion: "2024-11-05",
           capabilities: { tools: { listChanged: false } },
-          serverInfo: { name: "mestrepratico-brazil-prices-mcp", version: "1.2.0" }
+          serverInfo: { name: "mestrepratico-brazil-prices-mcp", version: "1.3.0" }
         }
       });
     } else if (rpc.method === "notifications/initialized" || (rpc.method && rpc.method.startsWith("notifications/"))) {
@@ -264,7 +318,7 @@ rl.on('line', (line) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "User-Agent": "MestrePratico-MCP-Stdio/1.2.0"
+          "User-Agent": "MestrePratico-MCP-Stdio/1.3.0"
         }
       }, (res) => {
         let body = "";
