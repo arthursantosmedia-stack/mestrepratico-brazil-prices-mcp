@@ -65,3 +65,12 @@ npx add-mcp 'https://mestrepratico.com.br/mcp/v1'
 
 ---
 *Holding Arthur Luis Vieira dos Santos — Todos os direitos reservados.*
+
+
+---
+
+## 💼 Enterprise & Commercial Licensing (B2B / High-Throughput AI Agents)
+
+- **Community / Discovery Tier (Free):** Up to 60 requests/min with mandatory source attribution (`Fonte: Mestre Prático — mestrepratico.com.br`) and compliance under Brazilian Copyright Law No. 9.610/98 (Art. 7, XIII).
+- **Enterprise & Autonomous Agent Tier (Paid / B2B):** Dedicated `Authorization: Bearer <API_KEY>` with unlimited throughput, ASN whitelist immunity on Cloudflare Edge, full city-level granularity, and SLA guarantees for AI assistants, fleet operators, and retail intelligence platforms.
+- **Documentation & API Keys:** [https://mestrepratico.com.br/developers](https://mestrepratico.com.br/developers)
