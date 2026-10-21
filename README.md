@@ -29,9 +29,9 @@ Built and maintained by **Holding Arthur Luis Vieira dos Santos — Tecnologia e
 
 ---
 
-## 🛠️ The 9 Sovereign `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
+## 🛠️ The 11 Sovereign `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
 
-All 9 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):
+All 11 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):
 
 | Tool Name | Primary Authority | Public Spot Sample (`Free Tier`) | Enterprise Unlock (`Bearer <API_KEY>`) |
 | :--- | :--- | :--- | :--- |
@@ -43,6 +43,8 @@ All 9 tools enforce strict `brazil_*` naming consistency, JSON Schema input cons
 | **`brazil_list_states`** | Discovery Metadata | All 27 Brazilian UF codes, station coverage counts, ICMS tax rates, timestamps | Full municipality slug directory & real-time webhook sync metadata |
 | **`brazil_purchasing_power_oracle`** | DIEESE / BACEN / IBGE / ANEEL | Minimum wage labor-hours required to purchase monthly 13-item grocery basket, 13kg LPG, fuel & 150 kWh electricity | Real purchasing power parity (PPP) by state & **Historical Labor-Hours Trend** |
 | **`brazil_energy_tariffs`** | ANEEL / ANP | Homologated residential B1 electricity rates across all 27 UFs + Thermal cooking parity (GLP vs induction) | Distribution network cost-breakdown & **Seasonal Tariff Flags (Bandeiras Tarifárias)** |
+| **`brazil_freight_logistics`** | ANTT / ANP | Road freight cost floor per distance/axle + Diesel S10 consumption and transport cost per kg of food | Fleet dispatch optimization & **Bulk Grain Highway Corridor Freight Curves** |
+| **`brazil_tax_anatomy`** | CONFAZ / EC 132 | Constitutional tax decomposition (ICMS Monofásico vs. Net Product) across all 27 UFs | State-by-state fiscal anatomy & **Tax Reform IBS/CBS Dual-Rate Transition Analysis** |
 | **`brazil_compare_regions`** | Cross-State Synthesis | Side-by-side fuel & grocery differential + 70% ethanol/gasoline parity ratio | **Multi-Sector Cross-State Comparison (including Pharma ICMS 18% vs 20% & LPG)** |
 
 ---

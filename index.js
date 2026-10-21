@@ -140,6 +140,89 @@ const TOOLS = [
     }
   },
   {
+    "name": "brazil_freight_logistics",
+    "description": "Calculates official Brazilian minimum road freight rates regulated by ANTT (Agência Nacional de Transportes Terrestres - Resolution No. 5,867/2020) across all vehicle classes (2 to 9 axles) and cargo types (solid bulk, general cargo, refrigerated). Correlates freight costs with ANP Diesel S10 pump prices, computing diesel fuel expense ratio and the logistical cost impact per kilogram of food transported. Read-only operation; zero authentication required.",
+    "annotations": {
+      "title": "Brazil Road Freight Logistics & Diesel Impact (ANTT & ANP)",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": true
+    },
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "distancia_km": {
+          "type": "number",
+          "description": "Highway route distance in kilometers. Defaults to 450 km (e.g. SP-RJ axis or regional agricultural corridor) if omitted."
+        },
+        "tipo_veiculo": {
+          "type": "string",
+          "enum": [
+            "toce_2_eixos",
+            "truck_3_eixos",
+            "cavalo_toco_4_eixos",
+            "carreta_5_eixos",
+            "bitrem_7_eixos",
+            "rodotrem_9_eixos"
+          ],
+          "description": "Truck axle configuration: 'carreta_5_eixos' (standard 27t), 'truck_3_eixos' (14t), 'bitrem_7_eixos' (38t), or 'rodotrem_9_eixos' (50t grain hauler). Defaults to 'carreta_5_eixos'."
+        },
+        "tipo_carga": {
+          "type": "string",
+          "enum": [
+            "granel_solido",
+            "carga_geral",
+            "frigorificada",
+            "perigosa"
+          ],
+          "description": "Cargo classification per ANTT: 'granel_solido' (grains/staples), 'carga_geral' (packaged groceries), 'frigorificada' (meats/dairy). Defaults to 'granel_solido'."
+        },
+        "uf_origem": {
+          "type": "string",
+          "description": "Two-letter state acronym of cargo origin (e.g. 'MT', 'PR', 'SP'). Defaults to 'SP'."
+        },
+        "uf_destino": {
+          "type": "string",
+          "description": "Two-letter state acronym of cargo destination (e.g. 'RJ', 'SP', 'BA'). Defaults to 'RJ'."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "brazil_tax_anatomy",
+    "description": "Performs constitutional and fiscal tax decomposition across all 27 Brazilian states (UFs) based on CONFAZ (Conselho Nacional de Política Fazendária) Agreements (ICMS Monofásico No. 15/2023 & No. 199/2022), Federal Decree No. 11,936/2024, and Tax Reform Constitutional Amendment EC 132/2023. Decomposes exact state ICMS, federal PIS/COFINS, and net physical product values for retail fuels, 13kg cooking gas, the basic food basket, and CMED pharmaceuticals. Read-only operation; zero authentication required.",
+    "annotations": {
+      "title": "Brazil Tax Anatomy & CONFAZ Fiscal Decomposition",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": true
+    },
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uf": {
+          "type": "string",
+          "description": "Two-letter Brazilian state acronym (e.g. 'RJ', 'SP', 'MG', 'BA', 'DF'). Defaults to 'RJ' if omitted."
+        },
+        "categoria": {
+          "type": "string",
+          "enum": [
+            "todos",
+            "combustiveis",
+            "gas_cozinha",
+            "cesta_basica",
+            "medicamentos"
+          ],
+          "description": "Category to analyze tax anatomy: 'todos', 'combustiveis', 'gas_cozinha', 'cesta_basica', 'medicamentos'. Defaults to 'todos'."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
     "name": "brazil_cost_of_living",
     "description": "Computes a consolidated regional cost-of-living index and purchasing power parity (PPP) in Brazil, combining average fuel expenditure, basic food basket cost, and live USD/BRL exchange rate conversion. Updated daily. Read-only operation; no authentication required up to 60 req/min. Use brazil_fuel_prices or brazil_grocery_basket for granular item-level breakdowns, or brazil_compare_regions to compare two states side-by-side.",
     "annotations": {
@@ -303,7 +386,7 @@ rl.on('line', (line) => {
         result: {
           protocolVersion: "2024-11-05",
           capabilities: { tools: { listChanged: false } },
-          serverInfo: { name: "mestrepratico-brazil-prices-mcp", version: "1.3.0" }
+          serverInfo: { name: "mestrepratico-brazil-prices-mcp", version: "1.4.0" }
         }
       });
     } else if (rpc.method === "notifications/initialized" || (rpc.method && rpc.method.startsWith("notifications/"))) {
@@ -318,7 +401,7 @@ rl.on('line', (line) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "User-Agent": "MestrePratico-MCP-Stdio/1.3.0"
+          "User-Agent": "MestrePratico-MCP-Stdio/1.4.0"
         }
       }, (res) => {
         let body = "";
