@@ -29,6 +29,16 @@ Built and maintained by **Holding Arthur Luis Vieira dos Santos — Tecnologia e
 
 ---
 
+## 🤖 Agent-to-Agent (A2A) Layer — Full Tri-Pillar MCP Compliance
+
+Our server is a certified **Full Tri-Pillar Model Context Protocol (MCP)** implementation providing complete cognitive agency across 3 protocol primitives:
+
+1. **`tools` (11 Sovereign Tools):** Instant sub-100ms RPC function calling across fuel, grocery, medicines, labor-hours, electricity tariffs, freight, and taxes.
+2. **`prompts` (5 Cognitive A2A Workflows):** Structured multi-step reasoning templates (`analisar_orcamento_familiar`, `auditar_viabilidade_logistica_antt`, `raio_x_tributario_reforma`, `auditar_preco_farmacia`, `analise_combustivel_frota`) that guide autonomous agents to audit, compute, and synthesize executive memos.
+3. **`resources` (8 Canonical URIs):** Direct live data hydration for AI agents without prompt injection risk (`mcp://brazil/macro/bcb-series`, `mcp://brazil/energy/aneel-tariffs`, `mcp://brazil/logistics/antt-freight-table`, `mcp://brazil/tax/confaz-icms-monofasico`, etc.).
+
+---
+
 ## 🛠️ The 11 Sovereign `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
 
 All 11 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):

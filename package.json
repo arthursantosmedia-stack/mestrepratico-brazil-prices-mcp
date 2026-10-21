@@ -1,7 +1,7 @@
 {
   "name": "@mestrepratico/brazil-prices-mcp",
-  "version": "1.4.0",
-  "description": "Official sovereign Model Context Protocol (MCP) server for Brazil real-economy data: 4,750+ ANP fuel stations, 13,145+ LPG cooking gas retailers, 13 SEFAZ NFC-e groceries, CMED/ANVISA medicines, ANEEL electricity tariffs, ANTT road freight logistics, and CONFAZ tax anatomy across all 27 Brazilian states.",
+  "version": "1.5.0",
+  "description": "Full Tri-Pillar Model Context Protocol (MCP) server for Brazil real-economy data: 11 Tools, 5 A2A Cognitive Prompts, and 8 Official Resources covering ANP fuels, GLP, SEFAZ groceries, CMED medicines, ANEEL energy, ANTT freight, and CONFAZ tax anatomy.",
   "main": "index.js",
   "bin": {
     "mestrepratico-brazil-prices-mcp": "./index.js"
@@ -34,6 +34,10 @@
     "freight",
     "antt",
     "tax-anatomy",
-    "confaz"
+    "confaz",
+    "a2a",
+    "agent-to-agent",
+    "prompts",
+    "resources"
   ]
 }

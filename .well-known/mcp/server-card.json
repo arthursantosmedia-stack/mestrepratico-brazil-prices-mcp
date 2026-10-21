@@ -1,8 +1,8 @@
 {
   "serverInfo": {
     "name": "mestrepratico-brazil-oracle",
-    "title": "Mestre Prático — Brazil Sovereign Real-Economy Oracle",
-    "version": "1.4.0"
+    "title": "Mestre Prático — Brazil Sovereign Real-Economy Oracle (A2A Ready)",
+    "version": "1.5.0"
   },
   "authentication": {
     "required": false,
@@ -10,6 +10,18 @@
       "none",
       "bearer"
     ]
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    }
   },
   "tools": [
     {
@@ -367,6 +379,151 @@
       }
     }
   ],
-  "resources": [],
-  "prompts": []
+  "prompts": [
+    {
+      "name": "analisar_orcamento_familiar",
+      "description": "Roteiro cognitivo A2A para IA: cruza Cesta Básica (SEFAZ), Botijão GLP 13kg (ANP), Luz 150 kWh (ANEEL) e Salário Mínimo, calculando horômetro de trabalho e paridade de cocção.",
+      "arguments": [
+        {
+          "name": "uf",
+          "description": "Sigla do estado brasileiro (ex: 'RJ', 'SP')",
+          "required": false
+        },
+        {
+          "name": "salario_mensal_brl",
+          "description": "Salário mensal líquido da família em R$",
+          "required": false
+        },
+        {
+          "name": "pessoas",
+          "description": "Número de pessoas na casa (padrão: 4)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "auditar_viabilidade_logistica_antt",
+      "description": "Roteiro A2A para frotas e embarcadores: cruza rota e eixos com o Piso Mínimo ANTT (Res. 5.867/2020) e calcula o impacto do Diesel S10 por kg de alimento.",
+      "arguments": [
+        {
+          "name": "distancia_km",
+          "description": "Distância da rota em km (padrão: 450 km)",
+          "required": false
+        },
+        {
+          "name": "tipo_veiculo",
+          "description": "Configuração de eixos do caminhão (ex: 'carreta_5_eixos', 'truck_3_eixos')",
+          "required": false
+        },
+        {
+          "name": "tipo_carga",
+          "description": "Classificação da carga ANTT ('granel_solido', 'carga_geral', 'frigorificada')",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "raio_x_tributario_reforma",
+      "description": "Roteiro A2A contábil/fiscal: decompõe ICMS Monofásico vs. Produto Líquido e projeta o impacto da Reforma Tributária (EC 132/2023 - IBS/CBS).",
+      "arguments": [
+        {
+          "name": "uf",
+          "description": "Sigla do estado brasileiro (ex: 'RJ', 'SP')",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "auditar_preco_farmacia",
+      "description": "Instrui a IA a auditar um cupom ou cotação de farmácia contra o Preço Máximo ao Consumidor (PMC) oficial da CMED/ANVISA, verificando se houve crime contra a economia popular e redigindo denúncia ao PROCON se aplicável.",
+      "arguments": [
+        {
+          "name": "medicamento",
+          "description": "Nome comercial ou princípio ativo do remédio",
+          "required": true
+        },
+        {
+          "name": "preco_cobrado",
+          "description": "Valor em R$ cobrado pela farmácia",
+          "required": true
+        },
+        {
+          "name": "uf",
+          "description": "Sigla do estado brasileiro (ex: 'sp', 'rj')",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "analise_combustivel_frota",
+      "description": "Roteiro analítico para frotas e motoristas: compara o preço na bomba com a mínima da ANP no estado, avalia a paridade de 70% Etanol/Gasolina e calcula a economia projetada.",
+      "arguments": [
+        {
+          "name": "preco_gasolina",
+          "description": "Preço do litro da gasolina",
+          "required": true
+        },
+        {
+          "name": "preco_etanol",
+          "description": "Preço do litro do etanol",
+          "required": true
+        },
+        {
+          "name": "uf",
+          "description": "Sigla do estado brasileiro",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "uri": "mcp://brazil/macro/bcb-series",
+      "name": "Banco Central do Brasil • Séries SGS Oficiais",
+      "description": "Séries temporais diárias do Banco Central: Selic Meta (Série 432: 13,75% a.a.), IPCA 12m (Série 13522: 4,58%) e Dólar PTAX (Série 1: R$ 5,0277).",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/energy/aneel-tariffs",
+      "name": "ANEEL • Tarifas Residenciais B1 Homologadas nas 27 UFs",
+      "description": "Tarifas homologadas pela Agência Nacional de Energia Elétrica para todas as concessionárias estaduais do Brasil (Light, Enel, Cemig, Copel, Equatorial, Celesc).",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/logistics/antt-freight-table",
+      "name": "ANTT • Tabela Oficial de Coeficientes de Frete Mínimo",
+      "description": "Coeficientes oficiais de Custo de Deslocamento (CCD) e Carga/Descarga (CC) por eixo e tipo de carga da Resolução ANTT nº 5.867/2020.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/tax/confaz-icms-monofasico",
+      "name": "CONFAZ • Alíquotas Ad Rem de ICMS Monofásico",
+      "description": "Alíquotas fixas nacionais de ICMS monofásico dos Convênios CONFAZ 15/2023 e 199/2022 (Gasolina R$ 1,47/L, Diesel R$ 1,06/L, GLP R$ 1,4139/kg).",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/cmed/anvisa-summary",
+      "name": "CMED/ANVISA • Dicionário Regulatório de 26.635 Medicamentos",
+      "description": "Consolidado oficial de tetos de Preço Máximo ao Consumidor (PMC), ICMS estadual (18% e 20%), regras da Lei Federal nº 10.742/2003 e lista de gratuidade total da Farmácia Popular do SUS.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/anp/fuels-summary",
+      "name": "ANP • Matriz Soberana de Preços de Combustíveis no Brasil",
+      "description": "Média, dispersão e menores preços auditados de Gasolina, Etanol, Diesel S10 e GNV nas 27 unidades federativas do Brasil com índice de paridade 70%.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/basic-basket/dieese-summary",
+      "name": "Cesta Básica Nacional • Parâmetros do Decreto nº 11.936/2024",
+      "description": "Especificações técnicas dos 13 alimentos essenciais que compõem a alimentação básica das famílias brasileiras e indicadores de custo de vida regional.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "mcp://brazil/lpg/gas-cozinha-summary",
+      "name": "ANP • Radar Nacional do Gás de Cozinha GLP 13kg",
+      "description": "Preços médios, mínimos e máximos auditados pela ANP para o botijão de 13kg em todas as macrorregiões do país.",
+      "mimeType": "application/json"
+    }
+  ]
 }

@@ -385,8 +385,12 @@ rl.on('line', (line) => {
         id,
         result: {
           protocolVersion: "2024-11-05",
-          capabilities: { tools: { listChanged: false } },
-          serverInfo: { name: "mestrepratico-brazil-prices-mcp", version: "1.4.0" }
+          capabilities: {
+          tools: { listChanged: false },
+          prompts: { listChanged: false },
+          resources: { subscribe: false, listChanged: false }
+        },
+          serverInfo: { name: "mestrepratico-brazil-prices-mcp", version: "1.5.0" }
         }
       });
     } else if (rpc.method === "notifications/initialized" || (rpc.method && rpc.method.startsWith("notifications/"))) {
@@ -395,13 +399,13 @@ rl.on('line', (line) => {
       sendJson({ jsonrpc: "2.0", id, result: { tools: TOOLS } });
     } else if (rpc.method === "ping") {
       sendJson({ jsonrpc: "2.0", id, result: {} });
-    } else if (rpc.method === "tools/call") {
+    } else if (rpc.method === "tools/call" || (rpc.method && (rpc.method.startsWith("prompts/") || rpc.method.startsWith("resources/")))) {
       const data = JSON.stringify(rpc);
       const req = https.request("https://mestrepratico.com.br/mcp/v1", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "User-Agent": "MestrePratico-MCP-Stdio/1.4.0"
+          "User-Agent": "MestrePratico-MCP-Stdio/1.5.0"
         }
       }, (res) => {
         let body = "";
