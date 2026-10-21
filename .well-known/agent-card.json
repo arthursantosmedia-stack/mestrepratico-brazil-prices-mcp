@@ -1,0 +1,294 @@
+{
+  "protocolVersion": "1.0",
+  "name": "MestrePraticoBrazilPricesA2A",
+  "description": "Sovereign Brazilian Macroeconomic & Consumer Price Intelligence Agent. Delivers primary audited data directly from ANP, SEFAZ NFC-e, CMED/ANVISA, BACEN SGS, ANEEL, and ANTT without hallucinations.",
+  "provider": {
+    "organization": "Holding Arthur Luis Vieira dos Santos (CNPJ 69.423.752/0001-61)",
+    "url": "https://mestrepratico.com.br"
+  },
+  "supportedInterfaces": [
+    {
+      "transport": "JSON-RPC-2.0",
+      "url": "https://mestrepratico.com.br/mcp/v1",
+      "protocolVersion": "1.0",
+      "preferred": true
+    },
+    {
+      "transport": "HTTP-SSE",
+      "url": "https://mestrepratico.com.br/mcp/v1/sse",
+      "protocolVersion": "1.0",
+      "preferred": false
+    }
+  ],
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false,
+    "triPillarMcp": true,
+    "taskLifecycleManagement": true,
+    "supportedTaskStates": [
+      "TASK_STATE_SUBMITTED",
+      "TASK_STATE_WORKING",
+      "TASK_STATE_COMPLETED",
+      "TASK_STATE_CANCELED",
+      "TASK_STATE_INPUT_REQUIRED",
+      "TASK_STATE_AUTH_REQUIRED"
+    ]
+  },
+  "securitySchemes": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Enterprise Bearer Token for unthrottled access, full national datasets, and historical time-series."
+    },
+    "anonymousCommunity": {
+      "type": "none",
+      "description": "Free public discovery tier for AI agents (60 req/min, Top 3 samples, zero friction)."
+    }
+  },
+  "security": [
+    {
+      "anonymousCommunity": []
+    },
+    {
+      "bearerAuth": []
+    }
+  ],
+  "skills": [
+    {
+      "id": "brazil_fuel_prices",
+      "name": "Brazil Fuel Prices",
+      "description": "Queries real-time audited retail fuel prices in Brazil (Regular Gasoline, Additive Gasoline, Hydrous Ethanol, Diesel S10, and CNG) sourced from Brazil's National Petroleum Agency (ANP) across 4,750+ stations in all 27 states and 417+ cities. Updated weekly with daily SEFAZ NFC-e cross-validation. Read-only operation; no authentication required for standard rate limits (60 req/min, max 50 stations returned per call). Use brazil_list_states first to discover valid state codes (uf), or brazil_compare_regions to compare averages between two states.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_fuel_prices para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_grocery_basket",
+      "name": "Brazil Grocery Basket",
+      "description": "Queries and compares real-time audited prices of Brazil's 13 Basic Food Basket items (rice, beans, coffee, soy oil, milk, sugar, beef, bread, butter, etc.) sourced from electronic consumer invoices (NFC-e SEFAZ) and DIEESE methodology across 59 regional hubs. Updated daily. Read-only operation; no authentication required up to 60 req/min. Use brazil_list_states to check regional coverage, brazil_cost_of_living for full household budget synthesis, or brazil_compare_regions for cross-state comparisons.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_grocery_basket para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_purchasing_power_oracle",
+      "name": "Brazil Purchasing Power Oracle",
+      "description": "Calculates real purchasing power parity (PPP) and labor-hour requirements across all 27 Brazilian states (UFs). Computes the exact working hours required to afford essential household survival goods: the 13 essential grocery items (SEFAZ NFC-e / DIEESE), residential 13kg cooking gas (ANP), fuel (50L gasoline tank), and electricity (150 kWh ANEEL). Correlates with Banco Central do Brasil (BCB SGS) interest and inflation rates, thermal parity (LPG vs. electric induction cooking), and CONFAZ tax anatomy. Read-only operation; zero authentication required.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_purchasing_power_oracle para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_energy_tariffs",
+      "name": "Brazil Energy Tariffs",
+      "description": "Provides official ANEEL (Ag\u00eancia Nacional de Energia El\u00e9trica) residential electricity tariffs (B1) across all 27 Brazilian states (UFs), covering state concessionaires (e.g. Light, Enel, Cemig, Copel, Equatorial, Celesc). Computes estimated monthly electric bills for a given consumption baseline (default 150 kWh), and calculates thermal cooking parity: comparing the cost of residential cooking with an ANP 13kg LPG cylinder against 99 kWh of electric induction cooking. Read-only operation; zero authentication required.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_energy_tariffs para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_freight_logistics",
+      "name": "Brazil Freight Logistics",
+      "description": "Calculates official Brazilian minimum road freight rates regulated by ANTT (Ag\u00eancia Nacional de Transportes Terrestres - Resolution No. 5,867/2020) across all vehicle classes (2 to 9 axles) and cargo types (solid bulk, general cargo, refrigerated). Correlates freight costs with ANP Diesel S10 pump prices, computing diesel fuel expense ratio and the logistical cost impact per kilogram of food transported. Read-only operation; zero authentication required.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_freight_logistics para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_tax_anatomy",
+      "name": "Brazil Tax Anatomy",
+      "description": "Performs constitutional and fiscal tax decomposition across all 27 Brazilian states (UFs) based on CONFAZ (Conselho Nacional de Pol\u00edtica Fazend\u00e1ria) Agreements (ICMS Monof\u00e1sico No. 15/2023 & No. 199/2022), Federal Decree No. 11,936/2024, and Tax Reform Constitutional Amendment EC 132/2023. Decomposes exact state ICMS, federal PIS/COFINS, and net physical product values for retail fuels, 13kg cooking gas, the basic food basket, and CMED pharmaceuticals. Read-only operation; zero authentication required.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_tax_anatomy para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_cost_of_living",
+      "name": "Brazil Cost Of Living",
+      "description": "Computes a consolidated regional cost-of-living index and purchasing power parity (PPP) in Brazil, combining average fuel expenditure, basic food basket cost, and live USD/BRL exchange rate conversion. Updated daily. Read-only operation; no authentication required up to 60 req/min. Use brazil_fuel_prices or brazil_grocery_basket for granular item-level breakdowns, or brazil_compare_regions to compare two states side-by-side.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_cost_of_living para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_lpg_gas_prices",
+      "name": "Brazil Lpg Gas Prices",
+      "description": "Queries official audited prices of residential cooking gas (13kg LPG cylinder / Botijao GLP P13) sourced from Brazil's National Petroleum Agency (ANP) across 13,145+ authorized resellers in all 27 Brazilian states. Updated weekly. Read-only operation; no authentication required up to 60 req/min. Use brazil_list_states to list valid UF codes or brazil_compare_regions to compare LPG costs between states.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_lpg_gas_prices para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_pharma_medicines",
+      "name": "Brazil Pharma Medicines",
+      "description": "Queries official Maximum Consumer Prices (PMC) and Factory Prices (PF) for 26,635+ regulated medicines in Brazil from CMED/ANVISA, including state-specific ICMS tax brackets (18% to 20%), active ingredients, laboratory, presentation, and free eligibility under the federal Farmacia Popular program. Updated monthly per CMED resolution. Read-only operation; no authentication required up to 60 req/min (returns up to 15 matching presentations per call).",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_pharma_medicines para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_list_states",
+      "name": "Brazil List States",
+      "description": "Discovery and metadata support tool: Returns the complete list of all 27 Brazilian Federative Units (UFs) covered by the server, including state code, full name, monitored gas station count, regional ICMS tax bracket, and dataset audit timestamp. Read-only and idempotent; requires no parameters and no authentication. Call this tool first to validate UF codes before invoking brazil_fuel_prices, brazil_grocery_basket, brazil_lpg_gas_prices, or brazil_compare_regions.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_list_states para a UF RJ ou SP"
+      ]
+    },
+    {
+      "id": "brazil_compare_regions",
+      "name": "Brazil Compare Regions",
+      "description": "Comparative synthesis tool: Compares weighted average prices and percentage deltas for fuels (gasoline, ethanol, diesel), 13kg LPG cooking gas, and basic food basket costs side-by-side between any two Brazilian states (origin UF vs. destination UF). Read-only operation; no authentication required up to 60 req/min. Use brazil_list_states to discover valid UF codes, or brazil_fuel_prices and brazil_grocery_basket for single-state station/store drilldowns.",
+      "tags": [
+        "brazil",
+        "economy",
+        "sovereign-data",
+        "mcp",
+        "a2a"
+      ],
+      "input_modes": [
+        "application/json"
+      ],
+      "output_modes": [
+        "application/json"
+      ],
+      "examples": [
+        "Consultar dados de brazil_compare_regions para a UF RJ ou SP"
+      ]
+    }
+  ],
+  "governance": {
+    "zeroHallucinationPolicy": "Strictly primary sources only. Fallbacks or synthetic data permanently prohibited.",
+    "legalTerms": "Protected under Brazilian Copyright Law (Federal Law No. 9.610/98, Art. 7, XIII) and international conventions.",
+    "canaryToken": "NC-CANARY-BRL-A2A-ACTIVE"
+  }
+}

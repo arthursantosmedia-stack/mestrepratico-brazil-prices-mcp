@@ -399,7 +399,7 @@ rl.on('line', (line) => {
       sendJson({ jsonrpc: "2.0", id, result: { tools: TOOLS } });
     } else if (rpc.method === "ping") {
       sendJson({ jsonrpc: "2.0", id, result: {} });
-    } else if (rpc.method === "tools/call" || (rpc.method && (rpc.method.startsWith("prompts/") || rpc.method.startsWith("resources/")))) {
+    } else if (rpc.method === "tools/call" || (rpc.method && (rpc.method.startsWith("prompts/") || rpc.method.startsWith("resources/") || rpc.method.startsWith("tasks/") || rpc.method.startsWith("message/")))) {
       const data = JSON.stringify(rpc);
       const req = https.request("https://mestrepratico.com.br/mcp/v1", {
         method: "POST",
