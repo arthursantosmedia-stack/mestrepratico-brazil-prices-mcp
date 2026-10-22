@@ -2,7 +2,6 @@ name: Publish to Official Anthropic MCP Registry
 
 on:
   push:
-    branches: [ "main" ]
     tags: [ "v*" ]
   workflow_dispatch:
 
@@ -29,4 +28,14 @@ jobs:
         run: ./mcp-publisher validate
 
       - name: Publish server to Anthropic MCP Registry
-        run: ./mcp-publisher publish
+        run: |
+          OUTPUT=$(./mcp-publisher publish 2>&1) || {
+            if echo "$OUTPUT" | grep -q "cannot publish duplicate version"; then
+              echo "ℹ️ Versão já publicada anteriormente no registro oficial. Nenhuma ação necessária."
+              exit 0
+            else
+              echo "$OUTPUT"
+              exit 1
+            fi
+          }
+          echo "$OUTPUT"
