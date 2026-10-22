@@ -1,5 +1,6 @@
 {
   "name": "@mestrepratico/brazil-prices-mcp",
+  "mcpName": "io.github.arthursantosmedia-stack/mestrepratico-brazil-prices-mcp",
   "version": "1.5.0",
   "description": "Full Tri-Pillar Model Context Protocol (MCP) server for Brazil real-economy data: 11 Tools, 5 A2A Cognitive Prompts, and 8 Official Resources covering ANP fuels, GLP, SEFAZ groceries, CMED medicines, ANEEL energy, ANTT freight, and CONFAZ tax anatomy.",
   "main": "index.js",
