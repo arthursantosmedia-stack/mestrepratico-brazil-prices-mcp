@@ -3,6 +3,7 @@
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--11--25-blue.svg)](https://modelcontextprotocol.io/)
 [![Anthropic MCP Registry](https://img.shields.io/badge/Anthropic%20MCP%20Registry-Verified%20Active-brightgreen.svg)](https://registry.modelcontextprotocol.io/v0/servers?search=mestrepratico)
 [![Glama Grade A](https://img.shields.io/badge/Glama%20Score-Grade%20A%20(4.4%2F5.0)-emerald.svg)](https://glama.ai/mcp/servers/arthursantosmedia-stack/mestrepratico-brazil-prices-mcp)
+[![Small Print Verified](https://smallprint.dev/badge/mcp-registry/io.github.arthursantosmedia-stack/mestrepratico-brazil-prices-mcp.svg)](https://smallprint.dev/a/mcp-registry/io.github.arthursantosmedia-stack/mestrepratico-brazil-prices-mcp)
 [![Cloudflare Edge](https://img.shields.io/badge/Hosted%20on-Cloudflare%20Edge-orange.svg)](https://mestrepratico.com.br/developers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Status: Online](https://img.shields.io/badge/Status-100%25%20Live-brightgreen.svg)](https://mestrepratico.com.br/mcp/v1)
