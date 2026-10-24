@@ -15,6 +15,29 @@ Built and maintained by **Holding Arthur Luis Vieira dos Santos — Tecnologia e
 
 ---
 
+## 🤝 Open Governance & Continuous Calibration (The Kaizen Principle)
+
+> **"Our First Sovereign MCP: Engineered to Evolve with the Community"**  
+> This is the first Model Context Protocol server developed and published by **Holding Arthur Luis Vieira dos Santos**. Brazil's continental economy — spanning 27 federal units and 5,570 municipalities — is a living, dynamic ecosystem. We do not operate under the illusion of perfection; instead, we operate under the **Kaizen Principle**: transparent engineering, continuous active calibration, and absolute honesty with developers and autonomous AI agents.
+
+### 🛡️ Active Maintenance Guarantee & Legal Grounding
+Every macroeconomic indicator, tax rate, and regulatory ceiling returned by our 11 sovereign tools is strictly calibrated against official primary authorities:
+- **National Minimum Wage:** Calibrated to **R$ 1,621.00 / month** (R$ 7.37 / hour) in accordance with Federal **Decree No. 12,797/2025** (*Decreto nº 12.797/2025*).
+- **Freight & Logistics Floor:** Anchored to **ANTT Resolution No. 5,867/2020** & **Decree No. 11.936/2024** (Basic Grocery Basket composition).
+- **Fuels & Cooking Gas (LPG):** Sourced from official **ANP (Agência Nacional do Petróleo, Gás Natural e Biocombustíveis)** regulatory surveys.
+- **Pharmaceutical Ceilings:** Calibrated to **CMED (Câmara de Regulação do Mercado de Medicamentos) / ANVISA** maximum consumer price lists (PMC) and SUS Farmácia Popular coverage.
+
+### 💡 Building in Public — How You Can Help Us Improve
+If you are building AI agents, testing connectors, or auditing data accuracy across Brazilian retail and logistics:
+- Found an edge-case, tax nuance, or regional variance? **Open an Issue or Pull Request** on our GitHub repository.
+- Need a specialized metric, webhook trigger, or schema enhancement? Our engineering team reviews and calibrates data feeds daily.
+- **Direct Technical Desk:** [`contato@mestrepratico.com.br`](mailto:contato@mestrepratico.com.br) | [`holding@mestrepratico.com.br`](mailto:holding@mestrepratico.com.br)
+- **GitHub Issues:** [nutripreco-oficial/mestre-pratico-mcp-server/issues](https://github.com/nutripreco-oficial/mestre-pratico-mcp-server/issues)
+
+---
+
+---
+
 > [!IMPORTANT]
 > ### 📊 Architectural Note on Historical Time-Series, Multi-Lab Pharmaceutical Comparisons & Full-Horizon Datasets
 > By deliberate commercial governance and intellectual property protection under **Brazilian Copyright Law No. 9.610/98 (Art. 7, XIII)**, the unauthenticated **Community / Discovery Tier** exposes **real-time spot prices (`T+0`) with curated horizon sampling** (max 3 stations / 2 LPG resellers / 3 medicines per query).

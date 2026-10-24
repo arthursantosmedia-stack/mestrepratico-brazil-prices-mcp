@@ -113,8 +113,8 @@ const TOOLS = [
         },
         "salario_base": {
           "type": "number",
-          "description": "Monthly income in BRL to calculate labor hours against standard 220h CLT workload. Defaults to federal minimum wage (1518.00 BRL).",
-          "default": 1518.0
+          "description": "Monthly income in BRL to calculate labor hours against standard 220h CLT workload. Defaults to official federal minimum wage (1621.00 BRL - Decree 12,797/2025).",
+          "default": 1621.0
         }
       },
       "required": [
