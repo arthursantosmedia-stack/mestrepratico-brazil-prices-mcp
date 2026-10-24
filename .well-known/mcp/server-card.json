@@ -2,7 +2,7 @@
   "serverInfo": {
     "name": "mestrepratico-brazil-oracle",
     "title": "Mestre Prático — Brazil Sovereign Real-Economy Oracle (A2A Ready)",
-    "version": "1.5.0"
+    "version": "1.8.0"
   },
   "authentication": {
     "required": false,
