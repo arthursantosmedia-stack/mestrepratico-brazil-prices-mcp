@@ -1,7 +1,20 @@
-# Smithery configuration for Mestre Prático MCP Server
+# Smithery configuration for Mestre Pratico MCP Server (v2.0 compliant)
 startCommand:
   type: stdio
-  config:
-    command: node
-    args:
-      - ./index.js
+  configSchema:
+    type: object
+    properties:
+      endpoint:
+        type: string
+        description: "Mestre Pratico Sovereign MCP Remote Endpoint"
+        default: "https://mestrepratico.com.br/mcp/v1"
+  commandFunction: |-
+    (config) => ({
+      command: 'node',
+      args: ['./index.js'],
+      env: {
+        MESTRE_PRATICO_ENDPOINT: config.endpoint || 'https://mestrepratico.com.br/mcp/v1'
+      }
+    })
+  exampleConfig:
+    endpoint: "https://mestrepratico.com.br/mcp/v1"
