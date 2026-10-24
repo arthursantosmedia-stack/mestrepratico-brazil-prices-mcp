@@ -206,6 +206,11 @@ const TOOLS = [
           "type": "string",
           "description": "Origin state code (e.g., 'sp', 'rj', 'mg') for diesel price correlation. Defaults to 'sp'.",
           "default": "sp"
+        },
+        "uf_destino": {
+          "type": "string",
+          "description": "Two-letter Brazilian state acronym for destination (e.g., 'rj', 'sp', 'mg', 'ba'). Defaults to 'rj'.",
+          "default": "rj"
         }
       },
       "required": [
