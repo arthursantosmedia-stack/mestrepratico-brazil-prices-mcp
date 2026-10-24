@@ -3,7 +3,7 @@
   "name": "io.github.arthursantosmedia-stack/mestrepratico-brazil-prices-mcp",
   "title": "Mestre Prático • Brazil Retail & Commodities MCP",
   "description": "Brazil real-economy MCP: ANP fuels, SEFAZ groceries, CMED medicines, ANEEL tariffs, CONFAZ tax anatomy & A2A protocol.",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "websiteUrl": "https://mestrepratico.com.br/developers",
   "repository": {
     "url": "https://github.com/arthursantosmedia-stack/mestrepratico-brazil-prices-mcp",
@@ -12,7 +12,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mestrepratico.com.br/mcp"
+      "url": "https://mestrepratico.com.br/mcp/v1"
     }
   ]
 }

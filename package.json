@@ -1,8 +1,8 @@
 {
   "name": "@mestrepratico/brazil-prices-mcp",
   "mcpName": "io.github.arthursantosmedia-stack/mestrepratico-brazil-prices-mcp",
-  "version": "1.7.0",
-  "description": "Full Sovereign Model Context Protocol (MCP) server for Brazil real-economy data: 12 Tools with Glama TDQS 5.0 Grade A compliance, covering ANP fuels, GLP, SEFAZ groceries, CMED medicines, ANEEL energy, ANTT freight, CONFAZ tax anatomy, and A2A intent contracts.",
+  "version": "1.8.0",
+  "description": "Full Sovereign Model Context Protocol (MCP) server for Brazil real-economy data: 11 Tools with Glama TDQS 5.0 Grade A compliance, covering ANP fuels, GLP, SEFAZ groceries, CMED medicines, ANEEL energy, ANTT freight, CONFAZ tax anatomy, and A2A intent contracts.",
   "main": "index.js",
   "bin": {
     "mestrepratico-brazil-prices-mcp": "./index.js"

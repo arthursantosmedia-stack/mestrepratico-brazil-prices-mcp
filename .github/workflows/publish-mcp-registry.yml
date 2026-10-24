@@ -9,6 +9,7 @@ jobs:
   publish:
     name: Publish to MCP Registry
     runs-on: ubuntu-latest
+    if: github.repository == 'arthursantosmedia-stack/mestrepratico-brazil-prices-mcp'
     permissions:
       id-token: write
       contents: read

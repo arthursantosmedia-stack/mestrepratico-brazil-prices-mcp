@@ -44,14 +44,14 @@ If you are building AI agents, testing connectors, or auditing data accuracy acr
 >
 > **Full Historical Price Time-Series (12-to-36 month ANP/SEFAZ/CMED inflation curves), Multi-Laboratory Pharmaceutical Therapeutic Equivalence & Cross-State Price Comparisons, and Uncapped 417+ City Bulk Datasets** are fully indexed in our sovereign vault and **exclusively unlocked for Enterprise & Commercial API Licensees (`Authorization: Bearer <ENTERPRISE_API_KEY>`)**.
 >
-> 👉 **Instant Self-Service Pro-Forma Invoice & Enterprise API Key Provisioning:** [**https://mestrepratico.com.br/developers**](https://mestrepratico.com.br/developers)
+> 👉 **Corporate Partnerships & Dedicated Enterprise Keys:** [**contato@mestrepratico.com.br**](mailto:contato@mestrepratico.com.br) | [**https://mestrepratico.com.br/developers**](https://mestrepratico.com.br/developers)
 
 ---
 
 ## 🌐 Live Remote MCP Endpoint (Zero-Install HTTP / Edge)
 - **Endpoint URL:** `https://mestrepratico.com.br/mcp/v1`
 - **Transport:** Streamable HTTP (`POST /mcp/v1` JSON-RPC 2.0 & `GET /mcp/v1` discovery manifest) + Local `stdio` Bridge (`index.js` / Docker).
-- **Enterprise B2B Portal & Pro-Forma Invoicing:** `https://mestrepratico.com.br/developers`
+- **Developers & Corporate Portal:** `https://mestrepratico.com.br/developers`
 
 ---
 
@@ -93,7 +93,7 @@ All 11 tools enforce strict `brazil_*` naming consistency, JSON Schema input con
 | **2. Commercial AI Agent / Startup** | Unlimited queries across all 417+ cities + Edge ASN Whitelist (`Authorization: Bearer`) | **12-Month Historical Time-Series + Pharma Comparator** | **US$ 490 / mo** *(or R$ 2.450/mês)* |
 | **3. Enterprise / Global Platform** | Dedicated high-frequency SLA, custom webhooks, raw bulk feeds & legal indemnity | **Full 36-Month Historical Time-Series + All 7 Verticals** | **US$ 1,950 / mo** *(or R$ 9.800/mês)* |
 
-* **Generate a Pro-Forma Invoice in 10 seconds:** [https://mestrepratico.com.br/developers](https://mestrepratico.com.br/developers)
+* **Corporate Partnerships & Dedicated Keys:** [contato@mestrepratico.com.br](mailto:contato@mestrepratico.com.br) | [https://mestrepratico.com.br/developers](https://mestrepratico.com.br/developers)
 * **Corporate Licensing Desk:** `parcerias@mestrepratico.com.br` | `holding@mestrepratico.com.br`
 
 ---
