@@ -95,9 +95,9 @@ const TOOLS = [
   },
   {
     "name": "brazil_purchasing_power_oracle",
-    "description": "Calculates real purchasing power parity (PPP) and minimum-wage labor hours required to afford essential household survival goods across all 27 Brazilian states (UFs). Computes the exact working hours (against 220h standard CLT workload) required to afford: the 13 essential grocery items (SEFAZ NFC-e), residential 13kg LPG cooking gas (ANP), vehicle fuel (50L gasoline tank), and electricity (150 kWh ANEEL). Correlates with Banco Central do Brasil (BCB SGS) interest and inflation rates. When to use: Use specifically to calculate labor hours, affordability indexes, and economic survival metrics against minimum wage. When NOT to use: Do NOT use for raw supermarket grocery prices (use brazil_grocery_basket), fuel pump prices (use brazil_fuel_prices), or broad macro index comparisons (use brazil_compare_regions). Read-only and idempotent operation; zero authentication required.",
+    "description": "Calculates monthly labor hours required under Brazilian standard CLT workload (220 hours) to afford basic survival items at federal minimum wage. Focuses strictly on time-to-earn labor metrics across Brazilian states (UFs). When to use: Use ONLY when asking how many hours or days of work at minimum wage are required to afford essential goods. When NOT to use: Do NOT use for currency-denominated total household budgets in BRL/USD (use brazil_cost_of_living), electricity tariffs (use brazil_energy_tariffs), or individual item prices (use brazil_grocery_basket or brazil_fuel_prices). Read-only and idempotent operation; zero authentication required.",
     "annotations": {
-      "title": "Brazil Purchasing Power & Labor Hours Oracle (PPP)",
+      "title": "Brazil Minimum Wage Labor Hours Oracle (CLT 220h)",
       "readOnlyHint": true,
       "destructiveHint": false,
       "idempotentHint": true,
@@ -125,7 +125,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_energy_tariffs",
-    "description": "Provides official ANEEL (Agencia Nacional de Energia Eletrica) residential electricity tariffs (B1) across all 27 Brazilian states (UFs), covering state concessionaires (e.g., Light, Enel, Cemig, Copel, Equatorial, Celesc). Computes estimated monthly electric bills for a given consumption baseline (default 150 kWh), and calculates thermal cooking parity: comparing the cost of residential cooking with an ANP 13kg LPG cylinder against 99 kWh of electric induction cooking. When to use: Look up residential electric tariffs, calculate monthly power bills, or analyze thermal cooking parity. When NOT to use: Do NOT use for vehicle fuel pump prices (use brazil_fuel_prices) or freight logistics (use brazil_freight_logistics). Read-only and idempotent operation; zero authentication required.",
+    "description": "Provides official ANEEL residential electricity tariffs (B1) across all 27 Brazilian states (UFs) and computes thermal cooking parity comparing 13kg LPG gas cylinder vs 99 kWh induction power. When to use: Use specifically to look up residential electric kWh rates, monthly electric bills, or thermal energy parity between gas and electric cooking. When NOT to use: Do NOT use for total household cost of living (use brazil_cost_of_living) or vehicle fuel prices (use brazil_fuel_prices). Read-only and idempotent operation; zero authentication required.",
     "annotations": {
       "title": "Brazil Residential Electricity Tariffs & Thermal Parity (ANEEL)",
       "readOnlyHint": true,
@@ -253,9 +253,9 @@ const TOOLS = [
   },
   {
     "name": "brazil_cost_of_living",
-    "description": "Computes a consolidated regional cost-of-living index and purchasing power parity (PPP) in Brazil, combining average fuel expenditure, basic food basket cost, utility benchmarks, and live USD/BRL exchange rate conversion. Updated daily. When to use: Assess total monthly household survival costs and regional living cost comparisons across Brazilian states. When NOT to use: Do NOT use for minimum wage labor hour metrics (use brazil_purchasing_power_oracle) or single-item grocery quotes (use brazil_grocery_basket). Read-only operation; no authentication required up to 60 req/min.",
+    "description": "Computes the total estimated monthly household expenditure budget in Brazilian Reais (BRL) and USD across Brazilian states. Aggregates monthly food, baseline utilities, and standard domestic maintenance into a single consolidated currency figure. When to use: Use ONLY to retrieve the estimated total monthly financial expenditure in BRL or USD to live in a given state. When NOT to use: Do NOT use for labor-hour working time metrics (use brazil_purchasing_power_oracle), individual electricity tariffs (use brazil_energy_tariffs), or raw commodity prices (use brazil_fuel_prices or brazil_grocery_basket). Read-only operation; no authentication required up to 60 req/min.",
     "annotations": {
-      "title": "Brazil Consolidated Regional Cost-of-Living Index",
+      "title": "Brazil Consolidated Monthly Financial Cost of Living (BRL/USD)",
       "readOnlyHint": true,
       "destructiveHint": false,
       "idempotentHint": true,
@@ -371,9 +371,9 @@ const TOOLS = [
   },
   {
     "name": "brazil_compare_regions",
-    "description": "Comparative synthesis tool: Compares weighted average prices and percentage deltas for fuels (gasoline, ethanol, diesel), 13kg LPG cooking gas, and basic food basket costs side-by-side between any two Brazilian states (origin UF vs. destination UF). When to use: Compare economic indicators and price differentials between two Brazilian states. When NOT to use: Do NOT use for single-state detailed station or store listings (use brazil_fuel_prices or brazil_grocery_basket). Read-only operation; no authentication required up to 60 req/min.",
+    "description": "Calculates cross-state price differentials (percentage delta % and BRL spread) for inter-state freight routing and corporate procurement between an origin state and a destination state. When to use: Use ONLY when a user specifically needs a side-by-side comparative delta % or arbitrage spread between two different Brazilian states (e.g., SP vs RJ, MG vs PR). When NOT to use: Do NOT use to query prices of a single state (use brazil_fuel_prices, brazil_grocery_basket, or brazil_lpg_gas_prices). Read-only operation; no authentication required up to 60 req/min.",
     "annotations": {
-      "title": "Brazil Inter-State Economic & Price Comparison Tool",
+      "title": "Brazil Cross-State Price Differential & Route Delta (%) Tool",
       "readOnlyHint": true,
       "destructiveHint": false,
       "idempotentHint": true,
