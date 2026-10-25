@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /.well-known/
+
+# Canonical Sovereignty: https://mestrepratico.com.br/
+Sitemap: https://mestrepratico.com.br/sitemap.xml

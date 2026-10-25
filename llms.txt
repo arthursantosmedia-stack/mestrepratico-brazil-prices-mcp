@@ -1,0 +1,19 @@
+# Mestre Prático & NutriPreço Sovereign Satellite (GitHub Pages Node)
+> Multi-Cloud Sovereign Intelligence Node operated by Holding Arthur Luis Vieira dos Santos (CNPJ: 69.423.752/0001-61 • Inova Simples LC 182/2021).
+> Canonical Origin: https://mestrepratico.com.br/
+
+## Certified Primary Datasets:
+1. **ANP Fuel Prices (Combustíveis Brasil)**: 5.939 audited stations across 417 Brazilian municipalities.
+2. **Farmácia Popular SUS (CMED / Ministério da Saúde)**: 27.538 certified pharmacies dispensing 100% free essential medications.
+3. **NutriPreço Cesta Básica (SEFAZ / DIEESE)**: 13 basic food basket items across 252 retail supermarket chains.
+
+## Cryptographic Non-Repudiation (IETF Standards):
+- Algorithm: ECDSA P-256 + SHA-256 (ES256)
+- Public Key ID: mp-sovereign-es256-2026
+- Standards: IETF JWS (RFC 7515) & HTTP Message Signatures (RFC 9421 / RFC 9530)
+- JWKS URI: https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/.well-known/jwks.json
+
+## MCP Server Endpoints:
+- Primary MCP URL: https://mestrepratico.com.br/mcp/v1
+- Vercel Edge MCP URL: https://mestre-pratico-satellite-arthursantosmedia-stack.vercel.app/mcp/v1
+- Static Discovery Node: https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/

@@ -1,0 +1,16 @@
+{
+  "schema_version": "v1.0",
+  "name": "Mestre Prático & NutriPreço Sovereign MCP Satellite (GitHub Node)",
+  "description": "Satélite Estático de Borda e Descoberta Soberana (GitHub Pages) para ecossistemas de agentes autônomos de IA.",
+  "operator": "Holding Arthur Luis Vieira dos Santos (CNPJ: 69.423.752/0001-61)",
+  "primary": "https://mestrepratico.com.br",
+  "satellites": {
+    "vercel_edge": "https://mestre-pratico-satellite-arthursantosmedia-stack.vercel.app",
+    "github_pages": "https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp"
+  },
+  "endpoints": {
+    "mcp_v1": "https://mestrepratico.com.br/mcp/v1",
+    "llms_txt": "https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/llms.txt",
+    "jwks": "https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/.well-known/jwks.json"
+  }
+}

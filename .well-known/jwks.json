@@ -1,0 +1,16 @@
+{
+  "keys": [
+    {
+      "kty": "EC",
+      "crv": "P-256",
+      "alg": "ES256",
+      "use": "sig",
+      "key_ops": [
+        "verify"
+      ],
+      "kid": "mp-sovereign-es256-2026",
+      "x": "gjJFF1LTKnlnf9dHieTS4q-qSFc79Cah1mU3wN8y-wU",
+      "y": "FO7GtcVpz9auG5-1Xal3DG-FJZTg9SiVSkcU6R44OVE"
+    }
+  ]
+}

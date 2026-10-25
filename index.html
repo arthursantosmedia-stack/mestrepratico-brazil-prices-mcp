@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mestre Prático & NutriPreço • Nó Satélite Soberano GitHub Pages</title>
+  <link rel="canonical" href="https://mestrepratico.com.br/">
+  <meta name="description" content="Nó Satélite Estático e Ponto de Presença Soberano operado pela Holding Arthur Luis Vieira dos Santos. Espelho de inteligência, chaves criptográficas JWKS e manifestos AEO/MCP.">
+  <meta name="author" content="Holding Arthur Luis Vieira dos Santos">
+  <meta property="og:title" content="Mestre Prático • Nó Satélite GitHub Pages">
+  <meta property="og:description" content="Nó satélite multi-cloud para agentes autônomos de IA e redundância de chaves assimétricas ES256.">
+  <meta property="og:url" content="https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(17, 24, 39, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.2);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #172554 0%, var(--bg) 75%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+    }
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .card h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+    }
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.85rem;
+    }
+    .status-item:last-child { border-bottom: none; }
+    .status-label { color: var(--text-muted); }
+    .status-val { font-weight: 600; color: #e5e7eb; }
+    .tag-live {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+    }
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover { color: #93c5fd; text-decoration: underline; }
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(17, 24, 39, 0.8) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .cta-banner h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .cta-banner p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.6rem 1.25rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .btn:hover { background: #1d4ed8; text-decoration: none; }
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Nó Satélite de Borda • GitHub Pages</div>
+      <h1>Holding Arthur Luis Vieira dos Santos</h1>
+      <p class="subtitle">Nó Espelho de Resiliência Estática e Descoberta Soberana de Metadados e Chaves Criptográficas RFC 7515</p>
+    </header>
+
+    <div class="grid">
+      <!-- Card 1: Topologia Multi-Cloud -->
+      <div class="card">
+        <h2>🛰️ Topologia da Malha Multi-Cloud</h2>
+        <div class="status-item">
+          <span class="status-label">Nó Primário Soberano:</span>
+          <span class="status-val tag-live">Cloudflare Workers (#489)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Nó Satélite Borda 1:</span>
+          <span class="status-val tag-live">Vercel Anycast</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Nó Satélite Borda 2:</span>
+          <span class="status-val tag-live">GitHub Pages Anycast</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Chave Pública JWKS:</span>
+          <span class="status-val"><a href=".well-known/jwks.json" target="_blank">mp-sovereign-es256-2026 ↗</a></span>
+        </div>
+      </div>
+
+      <!-- Card 2: Tríade de Dados e Governança -->
+      <div class="card">
+        <h2>⚖️ Integridade Factual e Primária</h2>
+        <div class="status-item">
+          <span class="status-label">Combustíveis ANP:</span>
+          <span class="status-val">5.939 Postos • 417 Municípios</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Farmácia Popular SUS:</span>
+          <span class="status-val">27.538 Drogarias Certificadas</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">NutriPreço Cesta Básica:</span>
+          <span class="status-val">252 Redes • 13 Itens</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Diretriz Global:</span>
+          <span class="status-val tag-live">Zero Simulação / Zero Alucinação</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Endpoints e Protocolos -->
+      <div class="card">
+        <h2>🤖 Acesso para Agentes de IA</h2>
+        <div class="status-item">
+          <span class="status-label">Manifesto MCP:</span>
+          <span class="status-val"><a href=".well-known/mcp.json" target="_blank">/.well-known/mcp.json ↗</a></span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Manifesto LLMs:</span>
+          <span class="status-val"><a href="llms.txt" target="_blank">/llms.txt ↗</a></span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Crawler Policy:</span>
+          <span class="status-val"><a href="robots.txt" target="_blank">/robots.txt ↗</a></span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Custo Operacional:</span>
+          <span class="status-val tag-live">R$ 0,00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h3>Origem Canônica Primária</h3>
+      <p>Todas as consultas, transações em tempo real e cotações auditadas convergem para o portal soberano principal.</p>
+      <a href="https://mestrepratico.com.br/" class="btn" target="_blank">Acessar Mestre Prático Oficial ↗</a>
+    </div>
+
+    <footer>
+      <p><strong>Holding Arthur Luis Vieira dos Santos</strong> • CNPJ: 69.423.752/0001-61 • Inova Simples (LC 182/2021)</p>
+      <p>Infraestrutura Multi-Cloud Soberana • Protocolos IETF RFC 7515 (JWS) & RFC 9421 / RFC 9530</p>
+    </footer>
+  </div>
+</body>
+</html>
