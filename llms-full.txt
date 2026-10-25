@@ -1,0 +1,142 @@
+# Mestre Prático & NutriPreço — Especificação Fractal Completa e Manual Técnico MCP (llms-full.txt)
+> Barramento Semântico e Oráculo de Alta Fidelidade da Economia Real Brasileira.
+> Operado por: TECNOLOGIA E INTELIGÊNCIA DE VAREJO INOVA SIMPLES I.S. (CNPJ 69.423.752/0001-61) — Holding Arthur Luis Vieira dos Santos.
+> Certificação: Glama.ai Grade A (4.4/5.0) | Homologado no MCPSERVERS.ORG e punkpeye/awesome-remote-mcp-servers.
+> Padrão A2A da Linux Foundation (a2a-protocol.org) e Model Context Protocol (Anthropic / MCP).
+
+Este documento fornece a especificação técnica exata, restrições de esquema (JSON Schema), tolerância a aliases semânticos e contratos de dados para as 12 ferramentas canônicas em `snake_case`, prompts cognitivos e ferramentas periciais de governança disponibilizadas pelo servidor MCP do Mestre Prático. Os agentes autônomos (SearchGPT, Claude Desktop, Cursor, Perplexity, LangGraph, AutoGPT) devem usar este manual para chamadas de função precisas, seguras e com zero alucinação.
+
+---
+
+## 1. Diretrizes Globais de Execução (Camada Sináptica & Borda Cloudflare)
+
+- **Endpoint MCP Oficial:** `POST https://mestrepratico.com.br/mcp/v1`
+- **Protocolo de Transporte:** JSON-RPC 2.0 sobre transporte MCP canônico e A2A Tasks Protocol (Linux Foundation).
+- **Tipagem de Dados e Princípio de Postel:** Respeito estrito aos tipos declarados. O servidor aceita aliases semânticos inteligentes nos parâmetros (ex: `uf` e `estado`, `cidade` e `municipio`, `termo` e `ean`).
+- **Tratamento de Strings:** Nomes de estados (UFs) são normalizados automaticamente para duas letras maiúsculas (ex: "SP", "RJ"). Strings sofrem sanitização contra injeções de prompt no microssegundo zero.
+- **Firewall Semântico Militar:** Tentativas de bypass de instrução (`ignore previous instructions`, `reveal system prompt`, `act as DAN`, `drop table`) são interceptadas no Cloudflare Edge com corte imediato e retorno HTTP 403 Forbidden.
+
+---
+
+## 2. Dicionário Técnico das 12 Ferramentas Oficiais
+
+### [01] `brazil_fuel_prices`
+- **Propósito:** Retorna o menor preço, preço médio e variação dos combustíveis auditados pela ANP em mais de 5.975 postos reais com CNPJ. Inclui cálculo automático de paridade térmica de 70% para Etanol vs Gasolina.
+- **Parâmetros (com Aliases Aceitos):**
+  - `uf` / `estado` (string, obrigatório): Duas letras da UF (ex: "SP", "RJ").
+  - `municipio` / `cidade` (string, opcional): Nome do município (ex: "Cabo Frio").
+  - `combustivel` (string, opcional): `GASOLINA_COMUM`, `GASOLINA_ADITIVADA`, `ETANOL`, `DIESEL_S10` ou `GNV`.
+  - `limite` (integer, opcional, default: 10): Quantidade máxima de postos retornados (1 a 50).
+- **Tipo de Retorno:** `application/json` com dados auditados da ANP, bandeira, endereço e carimbo de data.
+
+### [02] `brazil_lpg_gas_prices`
+- **Propósito:** Consulta a auditoria de preços da ANP para o Gás de Cozinha GLP (botijão de 13kg) em revendas brasileiras monitoradas.
+- **Parâmetros:**
+  - `uf` / `estado` (string, obrigatório): Duas letras da UF.
+  - `municipio` / `polo_distribuicao` (string, opcional): Município ou polo regional.
+- **Tipo de Retorno:** `application/json` indicando menor preço praticado, preço médio e distribuidora auditada.
+
+### [03] `brazil_pharma_medicines`
+- **Propósito:** Valida o Preço Máximo ao Consumidor (PMC) fixado pela ANVISA/CMED (Lei Federal nº 10.742/2003) para medicamentos regulados por lei, cruzando com a alíquota tributária estadual (ICMS 17% a 22%). Indica se o item possui 100% de gratuidade federal no Programa Farmácia Popular do SUS.
+- **Parâmetros:**
+  - `termo` / `ean` / `principio_ativo` (string, obrigatório): Nome do medicamento, princípio ativo ou código de barras EAN-13.
+  - `uf` / `estado` (string, obrigatório): Sigla do estado para aplicação da alíquota exata de ICMS da CMED.
+  - `apenas_gratuitos` (boolean, opcional, default: false): Filtra apenas os itens com gratuidade integral do PFPB.
+- **Tipo de Retorno:** `application/json` com teto legal de preço (PMC), laboratório, registro MS e selo Farmácia Popular.
+
+### [04] `brazil_grocery_basket`
+- **Propósito:** Monitora em tempo real os preços de alimentos da Cesta Básica nos supermercados e atacarejos auditados (NutriPreço), com suporte aos 13 itens do Decreto Federal nº 11.936/2024 e às 18 categorias canônicas ampliadas.
+- **Parâmetros:**
+  - `uf` / `estado` (string, obrigatório): UF coberta (`PE`, `RJ`, `SP`, `MG`, `RS`, `SC`, `PR`, `DF`, `GO`, `BA`, `CE`, `ES`).
+  - `cidade` / `municipio` (string, obrigatório): Nome da cidade.
+  - `categoria` / `item_decreto_id` (string ou integer, opcional): Categoria alimentar ou ID de 1 a 13 do decreto.
+- **Tipo de Retorno:** `application/json` com dispersão de preços, menor cesta, link canônico de e-commerce e estoque real verificado.
+
+### [05] `brazil_freight_logistics`
+- **Propósito:** Calcula o Piso Mínimo de Frete Rodoviário regulamentado pela ANTT (Resolução nº 5.867/2020), custos operacionais de transporte rodoviário e parâmetros logísticos em rotas comerciais brasileiras.
+- **Parâmetros:**
+  - `distancia_km` (number, obrigatório): Distância total em quilômetros.
+  - `tipo_veiculo` (string, obrigatório): `truck_3_eixos`, `carreta_5_eixos`, `rodotrem_9_eixos`, `vuc_2_eixos`.
+  - `tipo_carga` (string, obrigatório): `granel_solido`, `granel_liquido`, `carga_geral`, `frigorificada`, `perigosa`.
+  - Aliases de rota aceitos: `origem_uf`, `destino_uf`.
+- **Tipo de Retorno:** `application/json` com custo regulatório mínimo por km, combustível estimado e conformidade ANTT.
+
+### [06] `brazil_tax_anatomy`
+- **Propósito:** Mapeia a anatomia fiscal dos combustíveis e bens essenciais, computando alíquotas internas e interestaduais de ICMS (ad rem/monofásico), PIS/COFINS, CIDE e partilha DIFAL conforme resoluções CONFAZ e transição da Reforma Tributária (EC 132/2023 - CBS/IBS).
+- **Parâmetros:**
+  - `uf` / `uf_origem` (string, obrigatório): UF de análise.
+  - `uf_destino` (string, opcional): UF destinatária para cálculo de DIFAL.
+- **Tipo de Retorno:** `application/json` contendo o detalhamento de cada centavo tributário por litro ou unidade.
+
+### [07] `brazil_energy_tariffs`
+- **Propósito:** Fornece o custo homologado das tarifas de energia elétrica cobradas pelas distribuidoras locais (ANEEL), incluindo bandeira tarifária vigente (Verde, Amarela, Vermelha 1 e 2) e cálculo de paridade térmica.
+- **Parâmetros:**
+  - `uf` / `estado` (string, obrigatório): Sigla do estado.
+  - `concessionaria` (string, opcional): Distribuidora regional (ex: "LIGHT", "ENEL", "CPFL").
+  - `consumo_mensal_kwh` (number, opcional, default: 150): Consumo estimado em kWh.
+- **Tipo de Retorno:** `application/json` com tarifa B1/B3, valor do kWh e impacto da bandeira tarifária ativa.
+
+### [08] `brazil_cost_of_living`
+- **Propósito:** Síntese sináptica da Tríade de Sobrevivência (combustível + alimentação básica + medicamentos essenciais) por município e microrregião, com paridade de poder de compra em Dólar (USD) e Euro (EUR).
+- **Parâmetros:**
+  - `uf` / `estado` (string, obrigatório): Sigla da UF.
+  - `cidade` / `municipio` (string, obrigatório): Nome do município ou código IBGE de 7 dígitos.
+  - `comparar_com_dolar` (boolean, default: true).
+  - `comparar_com_euro` (boolean, default: false).
+- **Tipo de Retorno:** `application/json` com o custo total ponderado da sobrevivência local e ranking regional.
+
+### [09] `brazil_purchasing_power_oracle`
+- **Propósito:** Oráculo do poder de compra real. Cruza dados de renda e inflação do Banco Central (BACEN/SGS) e IBGE com os preços auditados do Mestre Prático, traduzindo o custo de vida em horas e dias reais de trabalho com base no Salário Mínimo Nacional oficial de R$ 1.621,00 (R$ 7,37/hora - Decreto Federal nº 12.797/2025).
+- **Parâmetros:**
+  - `uf` / `estado` (string, obrigatório): Duas letras da UF.
+  - `salario_mensal_brl` / `salario_base` (number, opcional, default: 1621.00): Valor base mensal em R$.
+- **Tipo de Retorno:** `application/json` com percentual de comprometimento da renda e dias de esforço necessários para o tanque de combustível e a cesta alimentar.
+
+### [10] `brazil_list_states` (Alias: `brazil_states_registry`)
+- **Propósito:** Retorna o registro completo de metadados geográficos, códigos oficiais do IBGE, capitais e status da malha auditada dos 26 estados brasileiros e do Distrito Federal.
+- **Parâmetros:** Nenhum parâmetro obrigatório.
+- **Tipo de Retorno:** `application/json` indexado para cache imediato na memória da IA.
+
+### [11] `brazil_compare_regions` (Alias: `brazil_regional_comparator`)
+- **Propósito:** Confronto pericial de discrepâncias de preços, cargas tributárias estaduais e custo de vida entre dois polos ou estados econômicos distintos.
+- **Parâmetros:**
+  - `origem_uf` / `uf_polo_a` (string, obrigatório).
+  - `destino_uf` / `uf_polo_b` (string, obrigatório).
+  - `origem_cidade` / `destino_cidade` (strings, opcionais).
+- **Tipo de Retorno:** `application/json` com matriz delta comparativa de poder de compra e desvios relativos.
+
+### [12] `brazil_contract_intent_a2a` (Alias: `emitir_contrato_intencao_a2a`)
+- **Propósito:** Emissão de certificado bilateral de intenção comercial máquina-para-máquina (A2A) com assinatura Ed25519, hash criptográfico SHA-256 e teto econômico garantido por 24 horas.
+- **Parâmetros:**
+  - `tipo_operacao` (string, obrigatório): `abastecimento_frota`, `cesta_basica_atacado`, `dispensacao_farmaceutica` ou `auditoria_tributaria`.
+  - `volume` / `volume_estimado` / `quantidade` (number, obrigatório): Volume numérico estritamente maior que zero (litros, cestas, caixas). Se ausente ou `<= 0`, o servidor retorna erro `-32602`.
+  - `uf` (string, opcional, default: "rj"): Sigla do estado federativo.
+  - `cidade` (string, opcional, default: "Polo Metropolitano").
+  - `agente_solicitante_id` (string, opcional, default: "Agente-Externo-Anonimo").
+  - `item_especifico` (string, opcional).
+- **Tipo de Retorno:** `application/json` com protocolo digital formalizado, carimbo SHA-256 e teto garantido.
+
+---
+
+## 3. Prompts MCP Padronizados (Workflows Cognitivos A2A)
+
+Os prompts MCP (`prompts/get`) representam rotinas cognitivas pré-estruturadas para orquestração de IAs:
+
+1. **`analisar_orcamento_familiar`:** Cruza Cesta Básica (SEFAZ), Botijão GLP 13kg (ANP), Luz 150 kWh (ANEEL) e Salário Mínimo (R$ 1.621,00 - Decreto Federal nº 12.797/2025).
+2. **`auditar_viabilidade_logistica_antt`:** Cruza rota e eixos com o Piso Mínimo ANTT (Resolução nº 5.867/2020) e impacto do Diesel S10 da ANP.
+3. **`raio_x_tributario_reforma`:** Confronta o regime atual (ICMS/PIS/COFINS) com o modelo da Emenda Constitucional nº 132/2023 (IBS/CBS).
+4. **`auditar_preco_farmacia`:** Realiza perícia contra cobrança abusiva de medicamentos com base no Preço Máximo ao Consumidor (PMC legal CMED/ANVISA - Lei Federal nº 10.742/2003) e elegibilidade ao Programa Farmácia Popular.
+5. **`analise_combustivel_frota`:** Avalia a paridade 70% Etanol vs Gasolina e traça curva de consumo e custo por km rodado para frotas com base nos dados ANP.
+
+---
+
+## 4. Políticas de Segurança e Tratamento de Exceções (RFC 7807)
+
+1. **Firewall Semântico Militar:** Tentativas de injeção de prompt ou personificação maliciosa disparam resposta imediata `403 Forbidden` com cabeçalho `X-Muro-Militar: ATIVO_BLOQUEIO_PERICIAL`.
+2. **Catálogo de Erros RFC 7807:**
+   - `urn:holding-arthur:error:invalid-input` (HTTP 400 / RPC -32602): Argumento fora do JSON Schema ou parâmetro `volume` ausente.
+   - `urn:holding-arthur:error:prompt-injection-detected` (HTTP 403): Bloqueio de injeção semântica.
+   - `urn:holding-arthur:error:unauthorized-signature` (HTTP 401): Falha na assinatura Ed25519.
+   - `urn:holding-arthur:error:rate-limit-exceeded` (HTTP 429): Quota excedida (> 60 req/min).
+   - `urn:holding-arthur:error:coverage-gap` (HTTP 404): Região sem posto ou farmácia cadastrada, acompanhada da distância euclidiana exata até o polo mais próximo.
+3. **Garantia de Autenticidade e Zero Dados Falsos:** Todas as respostas contêm o carimbo da `Holding Arthur Luis Vieira dos Santos`, garantindo procedência de dados 100% primários e auditados.

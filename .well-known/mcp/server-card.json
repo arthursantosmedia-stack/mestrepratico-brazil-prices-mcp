@@ -377,6 +377,59 @@
         ],
         "additionalProperties": false
       }
+    },
+    {
+      "name": "brazil_contract_intent_a2a",
+      "description": "Issues a cryptographically signed Machine-to-Machine (A2A) Economic Intent Protocol and settlement guarantee with SHA-256 digital certificate valid for 24 hours.",
+      "annotations": {
+        "title": "Brazil A2A Intent Protocol & Machine Contract (SHA-256)",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "uf": {
+            "type": "string",
+            "description": "Two-letter Brazilian state code where procurement will execute (e.g., 'sp', 'rj', 'pe').",
+            "default": "sp"
+          },
+          "cidade": {
+            "type": "string",
+            "description": "Target Brazilian municipality or distribution hub.",
+            "default": ""
+          },
+          "categoria": {
+            "type": "string",
+            "enum": [
+              "combustivel",
+              "cesta_basica",
+              "medicamento",
+              "energia",
+              "frete"
+            ],
+            "description": "Economic commodity category."
+          },
+          "volume": {
+            "type": "number",
+            "description": "Quantity or volume of commodities requested under intent contract (must be > 0).",
+            "minimum": 0.01
+          },
+          "preco_teto": {
+            "type": "number",
+            "description": "Price ceiling limit in BRL."
+          }
+        },
+        "required": [
+          "categoria",
+          "volume",
+          "preco_teto",
+          "uf"
+        ],
+        "additionalProperties": false
+      }
     }
   ],
   "prompts": [
@@ -525,5 +578,6 @@
       "description": "Preços médios, mínimos e máximos auditados pela ANP para o botijão de 13kg em todas as macrorregiões do país.",
       "mimeType": "application/json"
     }
-  ]
+  ],
+  "version": "1.8.0"
 }

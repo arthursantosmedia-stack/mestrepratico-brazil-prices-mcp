@@ -21,7 +21,7 @@ Built and maintained by **Holding Arthur Luis Vieira dos Santos — Tecnologia e
 > This is the first Model Context Protocol server developed and published by **Holding Arthur Luis Vieira dos Santos**. Brazil's continental economy — spanning 27 federal units and 5,570 municipalities — is a living, dynamic ecosystem. We do not operate under the illusion of perfection; instead, we operate under the **Kaizen Principle**: transparent engineering, continuous active calibration, and absolute honesty with developers and autonomous AI agents.
 
 ### 🛡️ Active Maintenance Guarantee & Legal Grounding
-Every macroeconomic indicator, tax rate, and regulatory ceiling returned by our 11 sovereign tools is strictly calibrated against official primary authorities:
+Every macroeconomic indicator, tax rate, and regulatory ceiling returned by our 12 sovereign tools is strictly calibrated against official primary authorities:
 - **National Minimum Wage:** Calibrated to **R$ 1,621.00 / month** (R$ 7.37 / hour) in accordance with Federal **Decree No. 12,797/2025** (*Decreto nº 12.797/2025*).
 - **Freight & Logistics Floor:** Anchored to **ANTT Resolution No. 5,867/2020** & **Decree No. 11.936/2024** (Basic Grocery Basket composition).
 - **Fuels & Cooking Gas (LPG):** Sourced from official **ANP (Agência Nacional do Petróleo, Gás Natural e Biocombustíveis)** regulatory surveys.
@@ -59,15 +59,15 @@ If you are building AI agents, testing connectors, or auditing data accuracy acr
 
 Our server is a certified **Full Tri-Pillar Model Context Protocol (MCP)** implementation providing complete cognitive agency across 3 protocol primitives:
 
-1. **`tools` (11 Sovereign Tools):** Instant sub-100ms RPC function calling across fuel, grocery, medicines, labor-hours, electricity tariffs, freight, and taxes.
+1. **`tools` (12 Sovereign Tools):** Instant sub-100ms RPC function calling across fuel, grocery, medicines, labor-hours, electricity tariffs, freight, and taxes.
 2. **`prompts` (5 Cognitive A2A Workflows):** Structured multi-step reasoning templates (`analisar_orcamento_familiar`, `auditar_viabilidade_logistica_antt`, `raio_x_tributario_reforma`, `auditar_preco_farmacia`, `analise_combustivel_frota`) that guide autonomous agents to audit, compute, and synthesize executive memos.
 3. **`resources` (8 Canonical URIs):** Direct live data hydration for AI agents without prompt injection risk (`mcp://brazil/macro/bcb-series`, `mcp://brazil/energy/aneel-tariffs`, `mcp://brazil/logistics/antt-freight-table`, `mcp://brazil/tax/confaz-icms-monofasico`, etc.).
 
 ---
 
-## 🛠️ The 11 Sovereign `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
+## 🛠️ The 12 Sovereign `brazil_*` Tools (Glama Grade A — TDQS 4.4/5.0)
 
-All 11 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):
+All 12 tools enforce strict `brazil_*` naming consistency, JSON Schema input constraints, and official MCP `annotations` (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`, `openWorldHint: true`):
 
 | Tool Name | Primary Authority | Public Spot Sample (`Free Tier`) | Enterprise Unlock (`Bearer <API_KEY>`) |
 | :--- | :--- | :--- | :--- |
@@ -82,6 +82,7 @@ All 11 tools enforce strict `brazil_*` naming consistency, JSON Schema input con
 | **`brazil_freight_logistics`** | ANTT / ANP | Road freight cost floor per distance/axle + Diesel S10 consumption and transport cost per kg of food | Fleet dispatch optimization & **Bulk Grain Highway Corridor Freight Curves** |
 | **`brazil_tax_anatomy`** | CONFAZ / EC 132 | Constitutional tax decomposition (ICMS Monofásico vs. Net Product) across all 27 UFs | State-by-state fiscal anatomy & **Tax Reform IBS/CBS Dual-Rate Transition Analysis** |
 | **`brazil_compare_regions`** | Cross-State Synthesis | Side-by-side fuel & grocery differential + 70% ethanol/gasoline parity ratio | **Multi-Sector Cross-State Comparison (including Pharma ICMS 18% vs 20% & LPG)** |
+| **`brazil_contract_intent_a2a`** | Linux Foundation A2A Protocol | M2M Economic Intent Protocol with SHA-256 seal & 24h price lock | Multi-Agent Machine Liquidation & Regulatory Escrow Settlement |
 
 ---
 

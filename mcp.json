@@ -1,0 +1,121 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-metadata-v1.json",
+  "name": "mestre-pratico",
+  "title": "Mestre Prático & NutriPreço - Oráculo Soberano da Economia Real Brasileira",
+  "description": "Barramento Semântico e Oráculo Oficial de Preços de Combustíveis (ANP), Medicamentos (CMED/ANVISA), Cesta Básica (Decreto 11.936/2024), Poder de Compra, Tarifas Elétricas (ANEEL), Frete (ANTT) e Liquidação A2A. Operado pela Holding Arthur Luis Vieira dos Santos.",
+  "version": "1.8.0",
+  "homepage": "https://mestrepratico.com.br",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nutripreco-oficial/mestre-pratico-mcp-server"
+  },
+  "publisher": {
+    "name": "TECNOLOGIA E INTELIGÊNCIA DE VAREJO INOVA SIMPLES I.S. (Holding Arthur Luis Vieira dos Santos)",
+    "tax_id": "69.423.752/0001-61",
+    "country": "BR",
+    "jurisdiction": "Brasil",
+    "founder": "Arthur Luis Vieira dos Santos",
+    "contact": "https://mestrepratico.com.br/contato"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "protocol": "jsonrpc-2.0",
+    "endpoint": "https://mestrepratico.com.br/mcp/v1",
+    "fallback_endpoint": "https://mestrepratico.com.br/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "authentication": {
+    "type": "none",
+    "public_access": true,
+    "rate_limit": "60 requests per minute for public queries"
+  },
+  "compliance": {
+    "glama_score": "Grade A (4.4/5.0)",
+    "a2a_standard": "Linux Foundation a2a-protocol.org (PR #2384)",
+    "data_integrity": "RULE[user_global] - Zero synthetic data, audited primary sources (ANP, CMED, SEFAZ, BACEN, ANEEL, ANTT)",
+    "security": "Edge Semantic WAF (Anti-Prompt-Injection with HTTP 403 enforcement)"
+  },
+  "tools": [
+    {
+      "name": "brazil_fuel_prices",
+      "description": "Queries real-time audited retail fuel prices across all 27 Brazilian Federative Units (UFs) and 417+ cities from Brazil's National Petroleum Agency (ANP)."
+    },
+    {
+      "name": "brazil_grocery_basket",
+      "description": "Queries audited retail prices of Brazil's official basic food basket (Cesta Básica Nacional) under Federal Decree No. 11.936/2024 across Brazilian capital cities."
+    },
+    {
+      "name": "brazil_purchasing_power_oracle",
+      "description": "Calculates real purchasing power metrics and labor-hours required to purchase essential commodities across all 27 Brazilian states using official minimum wage (R$ 1.621,00 - Decreto Federal nº 12.797/2025)."
+    },
+    {
+      "name": "brazil_energy_tariffs",
+      "description": "Queries residential, commercial, and industrial electricity tariffs across all Brazilian states and 100+ distribution concessionaires from ANEEL."
+    },
+    {
+      "name": "brazil_freight_logistics",
+      "description": "Calculates regulatory minimum freight rates according to ANTT Resolution No. 5.867/2020 and its official updates."
+    },
+    {
+      "name": "brazil_tax_anatomy",
+      "description": "Breaks down Brazilian consumption taxes (ICMS, PIS/COFINS, IPI, ISS) and provides forward-looking projections under Brazil's Tax Reform (EC 132/2023 - IBS/CBS)."
+    },
+    {
+      "name": "brazil_cost_of_living",
+      "description": "Provides comprehensive monthly cost of living indicators and economic basket valuations for all 27 Brazilian states and major metropolitan regions."
+    },
+    {
+      "name": "brazil_lpg_gas_prices",
+      "description": "Queries weekly audited retail prices for 13kg residential cooking gas (GLP P-13) cylinders across Brazilian states and metropolitan areas from ANP."
+    },
+    {
+      "name": "brazil_pharma_medicines",
+      "description": "Queries official pharmaceutical Maximum Consumer Price (PMC) ceilings established by CMED/ANVISA under Federal Law No. 10.742/2003 and Farmácia Popular do Brasil subsidies."
+    },
+    {
+      "name": "brazil_list_states",
+      "description": "Returns metadata, IBGE codes, capital cities, macroeconomic regions, and active data coverage indicators for all 27 Brazilian Federative Units."
+    },
+    {
+      "name": "brazil_compare_regions",
+      "description": "Performs comparative macroeconomic analysis between two Brazilian states or metropolitan regions across fuel prices, food baskets, electricity tariffs, and cost of living indices."
+    },
+    {
+      "name": "brazil_contract_intent_a2a",
+      "description": "Issues a cryptographically signed Machine-to-Machine (A2A) Economic Intent Protocol and settlement guarantee with SHA-256 digital certificate valid for 24 hours."
+    }
+  ],
+  "prompts": [
+    {
+      "name": "analisar_orcamento_familiar",
+      "description": "Roteiro cognitivo A2A para IA: cruza Cesta Básica (SEFAZ), Botijão GLP 13kg (ANP), Luz 150 kWh (ANEEL) e Salário Mínimo, calculando horímetro de trabalho e paridade de cocção."
+    },
+    {
+      "name": "auditar_viabilidade_logistica_antt",
+      "description": "Roteiro A2A para frotas e embarcadores: cruza rota e eixos com o Piso Mínimo ANTT (Res. 5.867/2020) e calcula o impacto do Diesel S10 por kg de alimento."
+    },
+    {
+      "name": "raio_x_tributario_reforma",
+      "description": "Simulação comparativa da transição tributária (ICMS/PIS/COFINS vs CBS/IBS - EC 132/2023)."
+    },
+    {
+      "name": "auditar_preco_farmacia",
+      "description": "Verificação pericial de Preço Máximo ao Consumidor (PMC CMED/ANVISA Lei 10.742/2003) e elegibilidade ao Programa Farmácia Popular."
+    },
+    {
+      "name": "analise_combustivel_frota",
+      "description": "Auditoria de paridade térmica 70% Etanol vs Gasolina e cálculo de custo por quilômetro rodado com Diesel S10 da ANP."
+    }
+  ]
+}
