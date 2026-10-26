@@ -851,5 +851,23 @@
       "name": "analise_combustivel_frota",
       "description": "Auditoria de paridade térmica 70% Etanol vs Gasolina e cálculo de custo por quilômetro rodado com Diesel S10 da ANP."
     }
-  ]
+  ],
+  "protocols": [
+    "mcp-2025-11-25",
+    "nlweb-1.0"
+  ],
+  "nlweb": {
+    "ask_endpoint": "https://mestrepratico.com.br/ask",
+    "who_endpoint": "https://mestrepratico.com.br/who",
+    "supported_modes": [
+      "generate",
+      "summarize",
+      "list"
+    ],
+    "formats": [
+      "json",
+      "markdown",
+      "text"
+    ]
+  }
 }

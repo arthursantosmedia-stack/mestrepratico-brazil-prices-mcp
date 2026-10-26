@@ -12,5 +12,23 @@
     "mcp_v1": "https://mestrepratico.com.br/mcp/v1",
     "llms_txt": "https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/llms.txt",
     "jwks": "https://arthursantosmedia-stack.github.io/mestrepratico-brazil-prices-mcp/.well-known/jwks.json"
+  },
+  "protocols": [
+    "mcp-2025-11-25",
+    "nlweb-1.0"
+  ],
+  "nlweb": {
+    "ask_endpoint": "https://mestrepratico.com.br/ask",
+    "who_endpoint": "https://mestrepratico.com.br/who",
+    "supported_modes": [
+      "generate",
+      "summarize",
+      "list"
+    ],
+    "formats": [
+      "json",
+      "markdown",
+      "text"
+    ]
   }
 }
