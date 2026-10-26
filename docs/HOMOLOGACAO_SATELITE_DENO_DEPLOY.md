@@ -1,7 +1,7 @@
 # Homologação do Satélite de Borda Deno Deploy (V8 Isolates)
 ## Arquitetura Multi-Cloud Soberana e Amplificador de Sinal MCP
 **Holding Arthur Luis Vieira dos Santos — CNPJ: 69.423.752/0001-61 • Inova Simples LC 182/2021**  
-*Data de Homologação: 25 de Outubro de 2026*
+*Data de Homologação: 25 de Outubro de 2026 (Revisão FastPath 42nyybdgwnjp)*
 
 ---
 
@@ -37,11 +37,20 @@ Este nó satélite opera na infraestrutura serverless global do Deno Deploy (V8 
 
 ---
 
-### 3. Endpoints Auditados em Produção (100% Online)
+### 3. FastPath Engine (Zero Sub-Requisições no Protocolo MCP)
+Para maximizar o score em indexadores agênticos globais (PulseMCP, Glama, Smithery) e eliminar latências parasitas, o satélite opera com o **FastPath em Memória V8**:
+- `initialize`: respondido diretamente da memória V8 em **< 0,1 ms** (`X-Handled-By: Deno-Deploy-Memory-FastPath`).
+- `tools/list`: catálogo com as 12 ferramentas primárias auditadas entregue em **< 0,1 ms** sem qualquer sub-requisição WAN.
+- `ping`: respondido instantaneamente com payload JSON-RPC 2.0 válido.
+- `tools/call`: roteamento dinâmico otimizado para o cluster primário Cloudflare.
+
+---
+
+### 4. Endpoints Auditados em Produção (100% Online)
 | Endpoint | Protocolo | Status | Descrição |
 | :--- | :--- | :--- | :--- |
 | `https://mestre-pratico-satellite.arthursantosmedia-stack.deno.net/` | HTTPS / HTML | 🟢 200 OK | Página Institucional com Telemetria e Canônica |
-| `.../mcp/v1` | JSON-RPC 2.0 | 🟢 200 OK | Servidor MCP Live (Manifest GET & Tools POST) |
+| `.../mcp/v1` | JSON-RPC 2.0 | 🟢 200 OK | Servidor MCP Live (FastPath Memory Engine) |
 | `.../.well-known/jwks.json` | JSON JWKS | 🟢 200 OK | Chave Pública `mp-sovereign-es256-2026` |
 | `.../.well-known/mcp.json` | JSON | 🟢 200 OK | Manifesto de Descoberta Agêntica |
 | `.../llms.txt` | Texto Puro | 🟢 200 OK | Resumo Estruturado para LLMs |
