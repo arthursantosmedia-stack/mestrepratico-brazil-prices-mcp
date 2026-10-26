@@ -1,0 +1,7 @@
+
+# Deployment & Internal Infrastructure Scripts (Custo Zero / Secrets Protection)
+deploy_*.py
+*.env
+*.pem
+*.key
+vercel_credentials.json

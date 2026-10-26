@@ -16,7 +16,7 @@ const rl = readline.createInterface({
 const TOOLS = [
   {
     "name": "brazil_fuel_prices",
-    "description": "Queries real-time audited retail fuel prices across all 27 Brazilian Federative Units (UFs) and 417+ cities from Brazil's National Petroleum Agency (ANP). Covers Regular Gasoline (Gasolina Comum), Additive Gasoline (Gasolina Aditivada), Hydrous Ethanol (Etanol Hidratado), Diesel S10, Diesel S500, and CNG (GNV). Calculates official 70% biofuel economic parity ratio and price dispersion across 21,000+ monitored gas stations. When to use: Retrieve current station-level and statewide retail fuel prices and ethanol vs gasoline parity in Brazil. When NOT to use: Do NOT use for residential cooking gas LPG prices (use brazil_lpg_gas_prices) or freight transport rates (use brazil_freight_logistics). Read-only and idempotent operation; no authentication required up to 60 req/min.",
+    "description": "Queries real-time audited retail fuel prices across all 27 Brazilian Federative Units (UFs) and 417+ cities from Brazil's National Petroleum Agency (ANP). Covers Regular Gasoline (Gasolina Comum), Additive Gasoline (Gasolina Aditivada), Hydrous Ethanol (Etanol Hidratado), Diesel S10, Diesel S500, and CNG (GNV). Calculates official 70% biofuel economic parity ratio and price dispersion across 5,939 monitored gas stations across all 27 Brazilian states (official ANP weekly audited sample). When to use: Retrieve current station-level and statewide retail fuel prices and ethanol vs gasoline parity in Brazil. When NOT to use: Do NOT use for residential cooking gas LPG prices or freight transport rates. Explicit routing rules: Use brazil_fuel_prices instead of brazil_lpg_gas_prices when querying vehicle fuels (gasoline, ethanol, diesel, CNG). Use brazil_lpg_gas_prices instead of brazil_fuel_prices for residential 13kg cooking gas cylinders. Use brazil_freight_logistics instead of brazil_fuel_prices when calculating freight transport rates and diesel logistical cost impact. Read-only and idempotent operation; no authentication required up to 60 req/min.",
     "annotations": {
       "title": "Brazil Retail Fuel Prices & Biofuel Parity (ANP)",
       "readOnlyHint": true,
@@ -29,12 +29,41 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
-          "description": "Two-letter Brazilian state code in lowercase (e.g., 'sp', 'rj', 'mg', 'ba', 'pr', 'ce', 'df'). Call brazil_list_states to see all 27 valid UF codes.",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
+          "description": "Two-letter Brazilian state code in lowercase (e.g., 'sp', 'rj', 'mg', 'ba'). Call brazil_list_states to see all valid codes.",
           "default": "sp"
         },
         "cidade": {
           "type": "string",
-          "description": "Optional city name or URL slug (e.g., 'sao-paulo', 'rio-de-janeiro', 'campinas', 'salvador'). Defaults to empty string to return statewide statistics.",
+          "description": "Optional city name or URL slug (e.g., 'sao-paulo', 'cabo-frio', 'recife'). Defaults to empty string to return statewide summary statistics.",
           "default": ""
         },
         "combustivel": {
@@ -60,7 +89,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_grocery_basket",
-    "description": "Queries real-time audited supermarket prices of Brazil's 13 Basic Food Basket items (rice, beans, coffee, soybean oil, milk, sugar, beef, french bread, butter, flour, tomato, banana, potato) sourced from electronic consumer invoices (NFC-e SEFAZ) and DIEESE methodology across 59 regional hubs. When to use: Look up staple grocery prices, item-level supermarket quotes, and food basket totals. When NOT to use: Do NOT use for broad cost-of-living index synthesis (use brazil_cost_of_living) or minimum-wage labor hours (use brazil_purchasing_power_oracle). Read-only and idempotent operation; no authentication required up to 60 req/min.",
+    "description": "Queries real-time audited supermarket prices of Brazil's 13 Basic Food Basket items (rice, beans, coffee, soybean oil, milk, sugar, beef, french bread, butter, flour, tomato, banana, potato) sourced from electronic consumer invoices (NFC-e SEFAZ) and DIEESE methodology across 59 regional hubs. When to use: Look up staple grocery prices, item-level supermarket quotes, and food basket totals. When NOT to use: Do NOT use for broad cost-of-living index synthesis or minimum-wage labor hours. Explicit routing rules: Use brazil_grocery_basket instead of brazil_cost_of_living when itemized retail grocery quotes (rice, beans, beef) are needed. Use brazil_cost_of_living instead of brazil_grocery_basket for consolidated total household monthly living expenditure in BRL/USD. Use brazil_purchasing_power_oracle instead of brazil_grocery_basket when calculating minimum-wage labor hours required to buy food. Read-only and idempotent operation; no authentication required up to 60 req/min.",
     "annotations": {
       "title": "Brazil Basic Food Basket Supermarket Prices (NFC-e / DIEESE)",
       "readOnlyHint": true,
@@ -73,12 +102,41 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
-          "description": "Two-letter Brazilian state code in lowercase (e.g., 'sp', 'rj', 'mg', 'ba', 'pe', 'rs'). Defaults to 'sp'.",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
+          "description": "Two-letter Brazilian state code in lowercase (e.g., 'sp', 'rj', 'mg', 'pe'). Defaults to 'sp'.",
           "default": "sp"
         },
         "cidade": {
           "type": "string",
-          "description": "Optional Brazilian city name or slug to filter local supermarket chains. Defaults to empty string to return statewide summary.",
+          "description": "Optional Brazilian city name or slug to filter local supermarket chains (e.g., 'rio-de-janeiro', 'cabo-frio', 'recife'). Defaults to empty string to return statewide summary.",
           "default": ""
         },
         "produto": {
@@ -95,7 +153,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_purchasing_power_oracle",
-    "description": "Calculates monthly labor hours required under Brazilian standard CLT workload (220 hours) to afford basic survival items at federal minimum wage. Focuses strictly on time-to-earn labor metrics across Brazilian states (UFs). When to use: Use ONLY when asking how many hours or days of work at minimum wage are required to afford essential goods. When NOT to use: Do NOT use for currency-denominated total household budgets in BRL/USD (use brazil_cost_of_living), electricity tariffs (use brazil_energy_tariffs), or individual item prices (use brazil_grocery_basket or brazil_fuel_prices). Read-only and idempotent operation; zero authentication required.",
+    "description": "Calculates monthly labor hours required under Brazilian standard CLT workload (220 hours) to afford basic survival items at federal minimum wage across all 27 Brazilian states (UFs). Focuses strictly on time-to-earn labor metrics comparing food baskets (DIEESE/SEFAZ), 13kg LPG cooking gas (ANP), fuel (50L gasoline), and residential electricity (150 kWh ANEEL). When to use: Use ONLY when asking how many hours or days of labor at minimum wage are required to afford survival items in Brazil. When NOT to use: Do NOT use for currency-denominated budgets, utility bills, or commodity prices. Explicit routing rules: Use brazil_purchasing_power_oracle instead of brazil_cost_of_living when the user asks for working-time effort (hours/days of labor) rather than total monetary currency expenditure (BRL/USD). Use brazil_grocery_basket instead of brazil_purchasing_power_oracle when itemized supermarket grocery quotes (rice, beans, beef) are needed. Use brazil_energy_tariffs instead of brazil_purchasing_power_oracle when specific ANEEL electricity bills or kWh rates are requested. Use brazil_tax_anatomy instead of brazil_purchasing_power_oracle for tax breakdown cascades. Read-only and idempotent operation; zero authentication required.",
     "annotations": {
       "title": "Brazil Minimum Wage Labor Hours Oracle (CLT 220h)",
       "readOnlyHint": true,
@@ -108,13 +166,43 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Two-letter Brazilian state acronym (e.g., 'rj', 'sp', 'mg', 'ba', 'df'). Defaults to 'rj'.",
           "default": "rj"
         },
         "salario_base": {
           "type": "number",
-          "description": "Monthly income in BRL to calculate labor hours against standard 220h CLT workload. Defaults to official federal minimum wage (1621.00 BRL - Decree 12,797/2025).",
-          "default": 1621.0
+          "minimum": 0,
+          "description": "Monthly income in BRL to calculate labor hours against standard 220h CLT workload. Defaults to official 2026 federal minimum wage (1621.00 BRL - Decree 12,797/2025). Example: 1621.00.",
+          "default": 1621
         }
       },
       "required": [
@@ -125,7 +213,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_energy_tariffs",
-    "description": "Provides official ANEEL residential electricity tariffs (B1) across all 27 Brazilian states (UFs) and computes thermal cooking parity comparing 13kg LPG gas cylinder vs 99 kWh induction power. When to use: Use specifically to look up residential electric kWh rates, monthly electric bills, or thermal energy parity between gas and electric cooking. When NOT to use: Do NOT use for total household cost of living (use brazil_cost_of_living) or vehicle fuel prices (use brazil_fuel_prices). Read-only and idempotent operation; zero authentication required.",
+    "description": "Provides official ANEEL residential electricity tariffs (B1) across all 27 Brazilian states (UFs) and computes thermal cooking parity comparing 13kg LPG gas cylinder vs 99 kWh induction power. When to use: Use specifically to look up residential electric kWh rates, monthly electric bills, or thermal energy parity between gas and electric cooking. When NOT to use: Do NOT use for total household cost of living or vehicle fuel prices. Explicit routing rules: Use brazil_energy_tariffs instead of brazil_lpg_gas_prices when analyzing induction electricity vs gas cooking costs. Use brazil_lpg_gas_prices instead of brazil_energy_tariffs when looking up retail LPG cylinder pump prices. Use brazil_cost_of_living instead of brazil_energy_tariffs when total consolidated household utility budgets are requested. Read-only and idempotent operation; zero authentication required.",
     "annotations": {
       "title": "Brazil Residential Electricity Tariffs & Thermal Parity (ANEEL)",
       "readOnlyHint": true,
@@ -138,13 +226,43 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Two-letter Brazilian state acronym (e.g., 'rj', 'sp', 'mg', 'ba', 'df'). Defaults to 'rj'.",
           "default": "rj"
         },
         "consumo_kwh": {
           "type": "number",
+          "minimum": 0,
           "description": "Monthly electricity consumption in kWh for residential bill calculation. Defaults to standard baseline 150 kWh.",
-          "default": 150.0
+          "default": 150
         },
         "calcular_paridade_termica": {
           "type": "boolean",
@@ -160,7 +278,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_freight_logistics",
-    "description": "Calculates official Brazilian minimum road freight rates regulated by ANTT (Agencia Nacional de Transportes Terrestres - Resolution No. 5,867/2020) across all vehicle classes (2 to 9 axles) and cargo types (solid bulk, general cargo, refrigerated). Correlates freight costs with ANP Diesel S10 pump prices, computing diesel fuel expense ratio and the logistical cost impact per kilogram of food transported. When to use: Calculate official ANTT freight rates, diesel expense ratio, or transport logistics costs between Brazilian cities. When NOT to use: Do NOT use for retail diesel pump prices at local gas stations (use brazil_fuel_prices). Read-only and idempotent operation; zero authentication required.",
+    "description": "Calculates official Brazilian minimum road freight rates regulated by ANTT (Agencia Nacional de Transportes Terrestres - Resolution No. 5,867/2020) across all vehicle classes (2 to 9 axles) and cargo types (solid bulk, general cargo, refrigerated). Correlates freight costs with ANP Diesel S10 pump prices, computing diesel fuel expense ratio and the logistical cost impact per kilogram of food transported. When to use: Calculate official ANTT freight rates, diesel expense ratio, or transport logistics costs between Brazilian cities. When NOT to use: Do NOT use for retail diesel pump prices at local gas stations. Explicit routing rules: Use brazil_freight_logistics instead of brazil_fuel_prices when calculating highway freight and trucking rates. Use brazil_fuel_prices instead of brazil_freight_logistics for gas station diesel pump prices. Use brazil_compare_regions instead of brazil_freight_logistics for regional economic delta % without truck axle formulas. Read-only and idempotent operation; zero authentication required.",
     "annotations": {
       "title": "Brazil Road Freight Minimum Rates & Logistics Cost (ANTT)",
       "readOnlyHint": true,
@@ -173,8 +291,9 @@ const TOOLS = [
       "properties": {
         "distancia_km": {
           "type": "number",
+          "minimum": 1,
           "description": "Total road route distance in kilometers (e.g., 430 for SP-RJ corridor). Defaults to 100 km.",
-          "default": 100.0
+          "default": 100
         },
         "tipo_carga": {
           "type": "string",
@@ -199,7 +318,7 @@ const TOOLS = [
             7,
             9
           ],
-          "description": "Vehicle axle configuration (2=truck, 3=heavy truck, 5=semi-trailer, 6=trailer, 7=bitrem, 9=rodotrem). Defaults to 3.",
+          "description": "Number of vehicle axles: 2 (Toco 8t), 3 (Truck 14t), 4 (Cavalo Toco 22t), 5 (Carreta 27t), 6 (Carreta 32t), 7 (Bitrem 38t), 9 (Rodotrem 50t). Defaults to 3.",
           "default": 3
         },
         "uf_origem": {
@@ -221,7 +340,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_tax_anatomy",
-    "description": "Details the anatomy of indirect consumption taxes in Brazil across all 27 states (UFs), covering single-phase ICMS (ad rem fixed per unit under CONFAZ Agreements 15/2023 and 199/2022 for fuels and LPG), standard ad valorem ICMS (17% to 22%), federal PIS/COFINS, and CIDE. Demonstrates the price formation cascade and federal tax reform (EC 132/2023 - IBS/CBS) transition impacts. When to use: Analyze fiscal burden, tax breakdown, and government revenue share in Brazilian consumer prices. When NOT to use: Do NOT use for basic price lookups without tax breakdown (use domain tools like brazil_fuel_prices). Read-only and idempotent operation; zero authentication required.",
+    "description": "Details the anatomy of indirect consumption taxes in Brazil across all 27 states (UFs), covering single-phase ICMS (ad rem fixed per unit under CONFAZ Agreements 15/2023 and 199/2022 for fuels and LPG), standard ad valorem ICMS (17% to 22%), federal PIS/COFINS, and CIDE. Demonstrates the price formation cascade and federal tax reform (EC 132/2023 - IBS/CBS) transition impacts. When to use: Analyze fiscal burden, tax breakdown, and government revenue share in Brazilian consumer prices. When NOT to use: Do NOT use for basic price lookups without tax breakdown. Explicit routing rules: Use brazil_tax_anatomy instead of brazil_fuel_prices when fiscal ICMS/PIS/COFINS breakdowns are requested. Use brazil_fuel_prices instead of brazil_tax_anatomy for gas station pump prices. Use brazil_cost_of_living instead of brazil_tax_anatomy for consolidated consumer living budgets. Read-only and idempotent operation; zero authentication required.",
     "annotations": {
       "title": "Brazil Consumption Tax Anatomy & ICMS Monofasico (CONFAZ)",
       "readOnlyHint": true,
@@ -234,6 +353,35 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Two-letter Brazilian state acronym (e.g., 'sp', 'rj', 'mg', 'ba', 'df'). Defaults to 'sp'.",
           "default": "sp"
         },
@@ -258,7 +406,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_cost_of_living",
-    "description": "Computes the total estimated monthly household expenditure budget in Brazilian Reais (BRL) and USD across Brazilian states. Aggregates monthly food, baseline utilities, and standard domestic maintenance into a single consolidated currency figure. When to use: Use ONLY to retrieve the estimated total monthly financial expenditure in BRL or USD to live in a given state. When NOT to use: Do NOT use for labor-hour working time metrics (use brazil_purchasing_power_oracle), individual electricity tariffs (use brazil_energy_tariffs), or raw commodity prices (use brazil_fuel_prices or brazil_grocery_basket). Read-only operation; no authentication required up to 60 req/min.",
+    "description": "Computes the total estimated monthly household expenditure budget in Brazilian Reais (BRL) and USD across Brazilian states. Aggregates monthly food, baseline utilities, and standard domestic maintenance into a single consolidated currency figure. When to use: Use ONLY to retrieve the estimated total monthly financial expenditure in BRL or USD to live in a given state. When NOT to use: Do NOT use for labor-hour working time metrics, individual electricity tariffs, or raw commodity prices. Explicit routing rules: Use brazil_cost_of_living instead of brazil_purchasing_power_oracle when monetary budget in BRL/USD is requested. Use brazil_purchasing_power_oracle instead of brazil_cost_of_living when the user asks for working hours of labor. Use brazil_grocery_basket instead of brazil_cost_of_living for individual food item prices. Read-only operation; no authentication required up to 60 req/min.",
     "annotations": {
       "title": "Brazil Consolidated Monthly Financial Cost of Living (BRL/USD)",
       "readOnlyHint": true,
@@ -271,6 +419,35 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Two-letter Brazilian state code (e.g., 'sp', 'rj', 'df', 'mg'). Defaults to 'sp'.",
           "default": "sp"
         },
@@ -288,7 +465,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_lpg_gas_prices",
-    "description": "Queries official audited retail prices of residential cooking gas (13kg LPG cylinder / Botijao de Gas GLP P13) sourced from Brazil's National Petroleum Agency (ANP) across 13,145+ authorized resellers in all 27 Brazilian states. Updated weekly with distributor markups and regional dispersion. When to use: Look up residential 13kg cooking gas prices by state or city in Brazil. When NOT to use: Do NOT use for vehicle fuels such as gasoline, ethanol, or CNG (use brazil_fuel_prices) or electricity tariffs (use brazil_energy_tariffs). Read-only and idempotent operation; no authentication required up to 60 req/min.",
+    "description": "Queries official audited retail prices of residential cooking gas (13kg LPG cylinder / Botijao de Gas GLP P13) sourced from Brazil's National Petroleum Agency (ANP) across 13,145+ authorized resellers in all 27 Brazilian states. Updated weekly with distributor markups and regional dispersion. When to use: Look up residential 13kg cooking gas prices by state or city in Brazil. When NOT to use: Do NOT use for vehicle fuels such as gasoline, ethanol, or CNG or electricity tariffs. Explicit routing rules: Use brazil_lpg_gas_prices instead of brazil_fuel_prices for residential cooking gas cylinders. Use brazil_fuel_prices instead of brazil_lpg_gas_prices for vehicle fuels (gasoline, ethanol, diesel). Use brazil_energy_tariffs instead of brazil_lpg_gas_prices when comparing electric induction cooking tariffs. Read-only and idempotent operation; no authentication required up to 60 req/min.",
     "annotations": {
       "title": "Brazil Audited Residential Cooking Gas Prices (ANP 13kg LPG)",
       "readOnlyHint": true,
@@ -301,7 +478,36 @@ const TOOLS = [
       "properties": {
         "uf": {
           "type": "string",
-          "description": "Two-letter Brazilian state code in lowercase (e.g., 'sp', 'rj', 'mg', 'ba', 'pr', 'ce', 'df'). Defaults to 'sp'.",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
+          "description": "Two-letter Brazilian state code in lowercase (e.g., 'sp', 'rj', 'mg', 'ba'). Defaults to 'sp'.",
           "default": "sp"
         },
         "cidade": {
@@ -318,7 +524,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_pharma_medicines",
-    "description": "Queries official Maximum Consumer Prices (PMC) and Factory Prices (PF) for 26,635+ regulated medicines in Brazil from CMED/ANVISA, including state-specific ICMS tax brackets (18% to 20%), active ingredients, laboratory, presentation, and 100% free dispensing eligibility under the federal Farmacia Popular program (PFPB). When to use: Look up official regulated medicine ceiling prices (PMC), verify generic active ingredient equivalence, or check free dispensing status under Farmacia Popular across Brazilian states. When NOT to use: Do NOT use for supermarket personal care products (use brazil_grocery_basket) or non-pharmaceutical price queries. Read-only and idempotent operation; no authentication required up to 60 req/min (returns up to 15 matching presentations per call).",
+    "description": "Queries official Maximum Consumer Prices (PMC) and Factory Prices (PF) for 26,635+ regulated medicines in Brazil from CMED/ANVISA, including state-specific ICMS tax brackets (18% to 20%), active ingredients, laboratory, presentation, and 100% free dispensing eligibility under the federal Farmacia Popular program (PFPB). When to use: Look up official regulated medicine ceiling prices (PMC), verify generic active ingredient equivalence, or check free dispensing status under Farmacia Popular across Brazilian states. When NOT to use: Do NOT use for supermarket personal care products or non-pharmaceutical price queries. Explicit routing rules: Use brazil_pharma_medicines instead of brazil_grocery_basket when searching for pharmaceutical active ingredients or drugstore products. Use brazil_grocery_basket instead of brazil_pharma_medicines for supermarket foods and hygiene commodities. Read-only and idempotent operation; no authentication required up to 60 req/min.",
     "annotations": {
       "title": "Brazil Regulated Pharmaceutical Prices & Farmacia Popular (CMED/ANVISA)",
       "readOnlyHint": true,
@@ -336,6 +542,35 @@ const TOOLS = [
         },
         "uf": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Two-letter Brazilian state code (e.g., 'sp', 'rj', 'mg', 'ba') to apply accurate regional ICMS tax bracket. Defaults to 'sp'.",
           "default": "sp"
         },
@@ -360,7 +595,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_list_states",
-    "description": "Discovery and metadata support tool: Returns the complete list of all 27 Brazilian Federative Units (UFs) covered by the server, including state code, state name, geographic macro-region, monitored gas station count, regional ICMS tax bracket, and dataset audit timestamp. When to use: Call this tool first to discover and validate state codes (uf) before invoking brazil_fuel_prices, brazil_grocery_basket, brazil_lpg_gas_prices, or brazil_compare_regions. When NOT to use: Do NOT use to get actual commodity prices (use domain-specific tools like brazil_fuel_prices). Read-only and idempotent; requires no parameters and no authentication.",
+    "description": "Discovery and metadata support tool: Returns the complete list of all 27 Brazilian Federative Units (UFs) covered by the server, including state code, state name, geographic macro-region, monitored gas station count, regional ICMS tax bracket, and dataset audit timestamp. When to use: Call this tool first to discover and validate state codes (uf) before invoking brazil_fuel_prices, brazil_grocery_basket, brazil_lpg_gas_prices, or brazil_compare_regions. When NOT to use: Do NOT use to get actual commodity prices. Explicit routing rules: Use brazil_list_states instead of domain query tools when validating geographical parameters. Use domain query tools (brazil_fuel_prices, brazil_grocery_basket) once valid state codes are known. Read-only and idempotent; requires no parameters and zero authentication.",
     "annotations": {
       "title": "Brazil Federative Units Discovery & State Metadata (27 UFs)",
       "readOnlyHint": true,
@@ -376,7 +611,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_compare_regions",
-    "description": "Calculates cross-state price differentials (percentage delta % and BRL spread) for inter-state freight routing and corporate procurement between an origin state and a destination state. When to use: Use ONLY when a user specifically needs a side-by-side comparative delta % or arbitrage spread between two different Brazilian states (e.g., SP vs RJ, MG vs PR). When NOT to use: Do NOT use to query prices of a single state (use brazil_fuel_prices, brazil_grocery_basket, or brazil_lpg_gas_prices). Read-only operation; no authentication required up to 60 req/min.",
+    "description": "Calculates cross-state price differentials (percentage delta % and BRL spread) for inter-state freight routing and corporate procurement between an origin state and a destination state. When to use: Use ONLY when a user specifically needs a side-by-side comparative delta % or arbitrage spread between two different Brazilian states (e.g., SP vs RJ, MG vs PR). When NOT to use: Do NOT use to query prices of a single state. Explicit routing rules: Use brazil_compare_regions instead of brazil_fuel_prices when comparative percentage spread between two states is needed. Use brazil_fuel_prices or brazil_grocery_basket instead of brazil_compare_regions when querying quotes for a single specific state. Read-only operation; no authentication required up to 60 req/min.",
     "annotations": {
       "title": "Brazil Cross-State Price Differential & Route Delta (%) Tool",
       "readOnlyHint": true,
@@ -389,11 +624,69 @@ const TOOLS = [
       "properties": {
         "uf_origem": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Origin two-letter Brazilian state code for comparison (e.g., 'sp', 'rj', 'ba'). Defaults to 'sp'.",
           "default": "sp"
         },
         "uf_destino": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Destination two-letter Brazilian state code for comparison (e.g., 'mg', 'pr', 'sc', 'rj'). Defaults to 'rj'.",
           "default": "rj"
         },
@@ -418,7 +711,7 @@ const TOOLS = [
   },
   {
     "name": "brazil_contract_intent_a2a",
-    "description": "Issues a cryptographically signed Machine-to-Machine (A2A) Economic Intent Protocol and settlement guarantee. Enables enterprise autonomous agents (fleet management bots, hospital procurement systems, wholesale supply coordinators) to formalize an intention to acquire fuels, basic food baskets, or regulated pharmaceutical supplies. The oracle verifies factual minimum prices against primary audited databases and generates a tamper-proof SHA-256 digital certificate issued by Holding Arthur Luis Vieira dos Santos, valid for 24 hours as an immutable settlement ceiling. When to use: Use when two autonomous agents need to negotiate and seal a formal procurement protocol with verifiable digital signature and settlement bounds. When NOT to use: Do NOT use for simple read-only price checks (use brazil_fuel_prices, brazil_grocery_basket, or brazil_pharma_medicines). Idempotent cryptographic certificate generation.",
+    "description": "Issues a cryptographically signed Machine-to-Machine (A2A) Economic Intent Protocol and settlement guarantee. Enables enterprise autonomous agents (fleet management bots, hospital procurement systems, wholesale supply coordinators) to formalize an intention to acquire fuels, basic food baskets, or regulated pharmaceutical supplies. The oracle verifies factual minimum prices against primary audited databases and generates a tamper-proof SHA-256 digital certificate issued by Holding Arthur Luis Vieira dos Santos, valid for 24 hours as an immutable settlement ceiling. When to use: Use when two autonomous agents need to negotiate and seal a formal procurement protocol with verifiable digital signature and settlement bounds. When NOT to use: Do NOT use for simple read-only price checks. Explicit routing rules: Use brazil_contract_intent_a2a instead of read-only tools when generating cryptographic contracts and procurement guarantees. Use brazil_fuel_prices, brazil_grocery_basket, or brazil_pharma_medicines instead of brazil_contract_intent_a2a for general read-only queries. Idempotent cryptographic certificate generation.",
     "annotations": {
       "title": "Brazil A2A Intent Protocol & Machine Contract Oracle",
       "readOnlyHint": false,
@@ -442,6 +735,35 @@ const TOOLS = [
         },
         "uf": {
           "type": "string",
+          "enum": [
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "pa",
+            "pb",
+            "pe",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "sc",
+            "se",
+            "sp",
+            "to"
+          ],
           "description": "Two-letter Brazilian state code where procurement will take place (e.g., 'rj', 'sp', 'mg', 'ba', 'pe'). Defaults to 'rj'.",
           "default": "rj"
         },
@@ -457,8 +779,9 @@ const TOOLS = [
         },
         "volume_estimado": {
           "type": "number",
+          "minimum": 1,
           "description": "Estimated procurement volume in liters (for fuels), units (for food baskets), or packages (for medicines). Defaults to 500.",
-          "default": 500.0
+          "default": 500
         },
         "item_especifico": {
           "type": "string",
