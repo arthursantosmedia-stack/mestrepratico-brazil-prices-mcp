@@ -1,8 +1,8 @@
 {
   "$schema": "https://modelcontextprotocol.io/schemas/server-metadata-v1.json",
   "name": "mestre-pratico",
-  "title": "Mestre Prático & NutriPreço - Oráculo Soberano da Economia Real Brasileira",
-  "description": "Barramento Semântico e Oráculo Oficial de Preços de Combustíveis (ANP), Medicamentos (CMED/ANVISA), Cesta Básica (Decreto 11.936/2024), Poder de Compra, Tarifas Elétricas (ANEEL), Frete (ANTT) e Liquidação A2A. Operado pela Holding Arthur Luis Vieira dos Santos.",
+  "title": "Mestre Prático & NutriPreço - Barramento de Dados Primários da Economia Real Brasileira",
+  "description": "Barramento Semântico e Conector de Dados Primários de Preços de Combustíveis (ANP), Medicamentos (CMED/ANVISA), Cesta Básica (Decreto 11.936/2024), Poder de Compra, Tarifas Elétricas (ANEEL) e Frete (ANTT). Operado pela Holding Arthur Luis Vieira dos Santos.",
   "version": "2.0.0",
   "homepage": "https://mestrepratico.com.br",
   "repository": {
@@ -41,7 +41,7 @@
     "rate_limit": "60 requests per minute for public queries"
   },
   "compliance": {
-    "glama_score": "Grade A (4.4/5.0)",
+    "glama_score": "Grade A (4.4/5.0) - https://glama.ai/mcp/servers/arthursantosmedia-stack/mestrepratico-brazil-prices-mcp",
     "a2a_standard": "Linux Foundation a2a-protocol.org (PR #2384)",
     "data_integrity": "RULE[user_global] - Zero synthetic data, audited primary sources (ANP, CMED, SEFAZ, BACEN, ANEEL, ANTT)",
     "security": "Edge Semantic WAF (Anti-Prompt-Injection with HTTP 403 enforcement)"

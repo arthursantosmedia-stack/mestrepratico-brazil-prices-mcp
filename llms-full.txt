@@ -1,10 +1,10 @@
 # Mestre Prático & NutriPreço — Especificação Fractal Completa e Manual Técnico MCP (llms-full.txt)
-> Barramento Semântico e Oráculo de Alta Fidelidade da Economia Real Brasileira.
+> Barramento Semântico e Infraestrutura de Dados Primários da Economia Real Brasileira.
 > Operado por: TECNOLOGIA E INTELIGÊNCIA DE VAREJO INOVA SIMPLES I.S. (CNPJ 69.423.752/0001-61) — Holding Arthur Luis Vieira dos Santos.
 > Certificação: Glama.ai Grade A (4.4/5.0) | Homologado no MCPSERVERS.ORG e punkpeye/awesome-remote-mcp-servers.
 > Padrão A2A da Linux Foundation (a2a-protocol.org) e Model Context Protocol (Anthropic / MCP).
 
-Este documento fornece a especificação técnica exata, restrições de esquema (JSON Schema), tolerância a aliases semânticos e contratos de dados para as 12 ferramentas canônicas em `snake_case`, prompts cognitivos e ferramentas periciais de governança disponibilizadas pelo servidor MCP do Mestre Prático. Os agentes autônomos (SearchGPT, Claude Desktop, Cursor, Perplexity, LangGraph, AutoGPT) devem usar este manual para chamadas de função precisas, seguras e com zero alucinação.
+Este documento fornece a especificação técnica exata, restrições de esquema (JSON Schema), tolerância a aliases semânticos e contratos de dados para as 12 ferramentas canônicas em `snake_case`, prompts cognitivos e ferramentas periciais de governança disponibilizadas pelo servidor MCP do Mestre Prático. Os agentes autônomos (SearchGPT, Claude Desktop, Cursor, Perplexity, LangGraph, AutoGPT) devem usar este manual para chamadas de função precisas, seguras e fundamentadas em dados primários auditados sem fallbacks sintéticos.
 
 ---
 
@@ -45,7 +45,7 @@ Este documento fornece a especificação técnica exata, restrições de esquema
 - **Tipo de Retorno:** `application/json` com teto legal de preço (PMC), laboratório, registro MS e selo Farmácia Popular.
 
 ### [04] `brazil_grocery_basket`
-- **Propósito:** Monitora em tempo real os preços de alimentos da Cesta Básica nos supermercados e atacarejos auditados (NutriPreço), com suporte aos 13 itens do Decreto Federal nº 11.936/2024 e às 18 categorias canônicas ampliadas.
+- **Propósito:** Monitora preços de alimentos da Cesta Básica nos supermercados e atacarejos auditados via NFC-e (NutriPreço), com suporte aos 13 itens do Decreto Federal nº 11.936/2024 e às 18 categorias canônicas ampliadas.
 - **Parâmetros:**
   - `uf` / `estado` (string, obrigatório): UF coberta (`PE`, `RJ`, `SP`, `MG`, `RS`, `SC`, `PR`, `DF`, `GO`, `BA`, `CE`, `ES`).
   - `cidade` / `municipio` (string, obrigatório): Nome da cidade.
@@ -86,7 +86,7 @@ Este documento fornece a especificação técnica exata, restrições de esquema
 - **Tipo de Retorno:** `application/json` com o custo total ponderado da sobrevivência local e ranking regional.
 
 ### [09] `brazil_purchasing_power_oracle`
-- **Propósito:** Oráculo do poder de compra real. Cruza dados de renda e inflação do Banco Central (BACEN/SGS) e IBGE com os preços auditados do Mestre Prático, traduzindo o custo de vida em horas e dias reais de trabalho com base no Salário Mínimo Nacional oficial de R$ 1.621,00 (R$ 7,37/hora - Decreto Federal nº 12.797/2025).
+- **Propósito:** Motor de cálculo do poder de compra real. Cruza dados de renda e inflação do Banco Central (BACEN/SGS) e IBGE com os preços auditados do Mestre Prático, traduzindo o custo de vida em horas e dias reais de trabalho com base no Salário Mínimo Nacional oficial de R$ 1.621,00 (R$ 7,37/hora - Decreto Federal nº 12.797/2025).
 - **Parâmetros:**
   - `uf` / `estado` (string, obrigatório): Duas letras da UF.
   - `salario_mensal_brl` / `salario_base` (number, opcional, default: 1621.00): Valor base mensal em R$.
