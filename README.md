@@ -1,11 +1,11 @@
-# Mestre Prático
+# Mestre Prático & NutriPreço — Brazil Retail, Fuel & Healthcare Price Intelligence MCP Server
 
 ## 🌐 NLWeb Protocol (Natural Language Web)
 
 In addition to JSON-RPC 2.0 MCP, this server natively implements the **NLWeb Protocol** (Standardized by Microsoft / Schema.org consortium):
-- **Direct QA Endpoint:** \GET/POST https://mestrepratico.com.br/ask?q={query}\ (Modes: \generate\, \summarize\, \list\)
-- **Agent Identity Endpoint:** \GET https://mestrepratico.com.br/who- **Factual Attribution:** Indissociable canonical attribution to \https://mestrepratico.com.br\ with Schema.org JSON-LD grounding.
- & NutriPreço — Brazil Retail, Fuel & Healthcare Price Intelligence MCP Server
+- **Direct QA Endpoint:** GET/POST https://mestrepratico.com.br/ask?q={query} (Modes: generate, summarize, list)
+- **Agent Identity Endpoint:** GET https://mestrepratico.com.br/who
+- **Factual Attribution:** Indissociable canonical attribution to https://mestrepratico.com.br with Schema.org JSON-LD grounding.
 
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--11--25-blue.svg)](https://modelcontextprotocol.io/)
 [![Anthropic MCP Registry](https://img.shields.io/badge/Anthropic%20MCP%20Registry-Verified%20Active-brightgreen.svg)](https://registry.modelcontextprotocol.io/v0/servers?search=mestrepratico)
