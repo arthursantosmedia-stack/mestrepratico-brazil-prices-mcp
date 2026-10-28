@@ -93,16 +93,26 @@ All 12 tools enforce strict `brazil_*` naming consistency, JSON Schema input con
 
 ---
 
-## 💼 Commercial Licensing & Pricing Tiers
+## 💰 Pricing & Autonomous Micropayments Architecture (x402 Protocol)
 
-| Tier | Throughput & Coverage | Historical Time-Series & Bulk | Monthly Investment |
-| :--- | :--- | :--- | :--- |
-| **1. Community / Evaluation** | Curated sample (max 3 items/call, 10 calls/window) with mandatory source attribution | Spot (`T+0`) only | **Free (`US$ 0`)** |
-| **2. Commercial AI Agent / Startup** | Unlimited queries across all 417+ cities + Edge ASN Whitelist (`Authorization: Bearer`) | **12-Month Historical Time-Series + Pharma Comparator** | **US$ 490 / mo** *(or R$ 2.450/mês)* |
-| **3. Enterprise / Global Platform** | Dedicated high-frequency SLA, custom webhooks, raw bulk feeds & legal indemnity | **Full 36-Month Historical Time-Series + All 7 Verticals** | **US$ 1,950 / mo** *(or R$ 9.800/mês)* |
+In strict accordance with the Founding Charter of **Holding Arthur Luis Vieira dos Santos**, legacy monthly subscription contracts have been decommissioned in favor of a frictionless, autonomous AI-native pricing architecture:
 
-* **Corporate Partnerships & Dedicated Keys:** [contato@mestrepratico.com.br](mailto:contato@mestrepratico.com.br) | [https://mestrepratico.com.br/developers](https://mestrepratico.com.br/developers)
-* **Corporate Licensing Desk:** `parcerias@mestrepratico.com.br` | `holding@mestrepratico.com.br`
+| Tier | Rate Limit & Access | Pricing | Settlement Protocol | Features & Scope |
+| :--- | :--- | :--- | :--- | :--- |
+| **🌱 Community & Open Grounding** | **60 req/min** (Zero-Auth / Anonymous) | **Free (R$ 0,00)** | None required | All 12 canonical `brazil_*` MCP tools, spot audited data (ANP, CMED, SEFAZ, ANEEL, ANTT, CONFAZ), prompts & resources. |
+| **⚡ Sovereign High-Throughput RAG** | **2,400 req/min** (Dedicated Edge Capacity) | **R$ 5,00 / 1.000 reqs** *(or ~0.001 USDC / call)* | **HTTP 402 / x402 Micropayments** or Pix | High-frequency agent swarms, sub-15ms Anycast SLA, municipality-level pump telemetry, raw bulk feeds & cryptographic audit receipts. |
+
+### 🤖 Machine-to-Machine (x402) Header Specification
+Autonomous agents exceeding community rate limits or requesting batch feeds can pay per query natively via RFC HTTP 402 without manual human invoicing:
+
+```http
+GET /mcp/v1 HTTP/1.1
+Host: mestrepratico.com.br
+X-Payment: mp_x402_<session_token>
+```
+* **Discovery Endpoint:** [`https://mestrepratico.com.br/.well-known/x402`](https://mestrepratico.com.br/.well-known/x402)
+* **Supported Rails:** Pix (instant BRL), Base, Solana, Polygon, Lightning (USDC/SATS).
+* **Corporate Partnerships & Dedicated SLAs:** [contato@mestrepratico.com.br](mailto:contato@mestrepratico.com.br) | [Developer Portal](https://mestrepratico.com.br/developers)
 
 ---
 
